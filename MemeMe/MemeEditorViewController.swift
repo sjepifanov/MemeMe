@@ -119,7 +119,29 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   }
   
   @IBAction func actionButton(sender: AnyObject) {
+    let memedImage = generateMemedImage()
+    let actionController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+    self.presentViewController(actionController, animated: true, completion: nil)
+    
+    //could be set in short form: actionController.completionWithItemsHandler = {action, result, object, error in }
+    actionController.completionWithItemsHandler = {
+      (activityType: String!, completed: Bool, returnedItems: [AnyObject]!, activityError:NSError!) in
+      if completed{
+        println("completed action \(activityType)")
+        self.save()
+        
+        // TODO: Create Table View Controller
+        //let tableViewController = self.storyboard!.instantiateViewControllerWithIdentifier("tableViewController") as! MemeTableViewController
+        //self.navigationController!.pushViewController(tableViewController, animated: true)
+        
+      }else{
+        println("something wrong: \(activityType)")
+      }
+    }
+    //actionController.completionWithItemsHandler = {action, result, object, error in }
   }
+  
+  
   @IBAction func cancelButton(sender: AnyObject) {
   }
   
