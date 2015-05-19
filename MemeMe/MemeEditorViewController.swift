@@ -10,7 +10,7 @@ import UIKit
 
 //, UITextFieldDelegate
 
-class MemeEditorViewController: UIViewController {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
 
   // MARK: Outlets
   @IBOutlet weak var topTextField: UITextField!
@@ -19,14 +19,15 @@ class MemeEditorViewController: UIViewController {
   @IBOutlet weak var cameraButton: UIBarButtonItem!
   @IBOutlet weak var actionButton: UIBarButtonItem!
   @IBOutlet weak var cancelButton: UIBarButtonItem!
+  @IBOutlet weak var scrollView: UIScrollView!
+  @IBOutlet weak var contentView: UIView!
+  @IBOutlet weak var imageView: UIImageView!
   
   //MARK: Declarations
   
   let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
   let textDelegate = textFieldDelegate()
-  
-  let imagePicker = imagePickerDelegate()
   
   let memeTextAttributes = [
     NSStrokeColorAttributeName : UIColor.blackColor(),
@@ -38,7 +39,16 @@ class MemeEditorViewController: UIViewController {
   //MARK: View
   override func viewDidLoad() {
     super.viewDidLoad()
+    scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
+    
+    // Top and bottom insets for Nav and Tool bars
+    // Seems like it's affecting scrollViewFrame when done here. Try in ViewDidLoad insead.
+    scrollView.contentInset=UIEdgeInsetsMake(64.0,0.0,44.0,0.0)
 
+  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -84,7 +94,7 @@ class MemeEditorViewController: UIViewController {
   
   @IBAction func albumButton(sender: AnyObject) {
     let imagePickerController = UIImagePickerController()
-    imagePickerController.delegate = imagePicker
+    imagePickerController.delegate = self
     imagePickerController.sourceType = .PhotoLibrary
     self.presentViewController(imagePickerController, animated: true, completion: nil)
 
@@ -92,16 +102,10 @@ class MemeEditorViewController: UIViewController {
   
   @IBAction func cameraButton(sender: AnyObject) {
     let imagePickerController = UIImagePickerController()
-    imagePickerController.delegate = imagePicker
+    imagePickerController.delegate = self
     //select source type for UIImagePickerController
     imagePickerController.sourceType = .Camera
     self.presentViewController(imagePickerController, animated: true, completion: nil)
-    var info = [NSObject : AnyObject]()
-    imagePicker.imagePickerController(imagePickerController, didFinishPickingMediaWithInfo: info)
-    if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-      println("picked object from delegate")
-
-    }
   }
   
   @IBAction func actionButton(sender: AnyObject) {
@@ -184,7 +188,79 @@ class MemeEditorViewController: UIViewController {
     return keyboardSize.CGRectValue().height
   }
 
+  // MARK: Image Picker Controller Delegates methods
+  func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    println("imagePicker delegate")
+    if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
+      
+      // Dismiss UIImagePickerController when selection is made
+      dismissViewControllerAnimated(true, completion: nil)
+      
+      imageView.image = image
+      println("imageView frame: \(imageView.frame.size)")
+      println("contentView frame: \(contentView.frame.size)")
+      println("scrollView frame: \(scrollView.frame.size)")
+      
+      
+      // TODO: Zoom is not working. AutoLayout issue maybe!
+      scrollView.contentSize = image.size
+      
+      let scrollViewFrame = scrollView.frame
+      let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
+      let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height
+      let minScale = min(scaleWidth, scaleHeight)
+      
+      scrollView.minimumZoomScale = minScale
+      
+      scrollView.maximumZoomScale = 1
+      scrollView.zoomScale = minScale
 
+      println("imageView frame: \(imageView.frame.size)")
+      println("contentView frame: \(contentView.frame.size)")
+      println("scrollView frame: \(scrollView.frame.size)")
+      
+    }
+  }
+  
+  func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    // Dismiss on cancel
+    println("imagePicker dismissed")
+    dismissViewControllerAnimated(true, completion: nil)
+  }
+
+  // MARK: Scroll View Delegates
+  
+  func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    return imageView
+  }
+  
+  func scrollViewDidZoom(scrollView: UIScrollView) {
+    centerScrollViewContents()
+  }
+  
+  func centerScrollViewContents() {
+    
+    let boundsSize = scrollView.bounds.size
+    var contentsFrame = imageView.frame
+    
+    if contentsFrame.size.width < boundsSize.width {
+      
+      contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2
+    } else {
+      contentsFrame.origin.x = 0
+    }
+    
+    if contentsFrame.size.height < boundsSize.height {
+      contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2
+    } else {
+      contentsFrame.origin.y = 0
+    }
+    
+    imageView.frame = contentsFrame
+    
+  }
+
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.

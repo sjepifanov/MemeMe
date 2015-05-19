@@ -36,6 +36,26 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mvr-hB-FnT">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NU3-Kp-Lyr" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Elz-Lw-OMf">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Elz-Lw-OMf" secondAttribute="bottom" id="5zC-i4-lBa"/>
+                                            <constraint firstAttribute="trailing" secondItem="Elz-Lw-OMf" secondAttribute="trailing" id="81S-hg-gcU"/>
+                                            <constraint firstItem="Elz-Lw-OMf" firstAttribute="leading" secondItem="NU3-Kp-Lyr" secondAttribute="leading" id="ZBT-My-GHt"/>
+                                            <constraint firstItem="Elz-Lw-OMf" firstAttribute="top" secondItem="NU3-Kp-Lyr" secondAttribute="top" id="rfN-jr-F9P"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </scrollView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJH-b1-Hib">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
@@ -64,45 +84,25 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mvr-hB-FnT">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NU3-Kp-Lyr" userLabel="Content View">
-                                        <rect key="frame" x="-20" y="-20" width="640" height="640"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Elz-Lw-OMf">
-                                                <rect key="frame" x="20" y="20" width="600" height="600"/>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="centerY" secondItem="Elz-Lw-OMf" secondAttribute="centerY" id="3dh-jU-D4r"/>
-                                            <constraint firstAttribute="centerX" secondItem="Elz-Lw-OMf" secondAttribute="centerX" id="6Xt-cc-1bJ"/>
-                                            <constraint firstItem="Elz-Lw-OMf" firstAttribute="height" secondItem="NU3-Kp-Lyr" secondAttribute="height" id="j2y-sc-Src"/>
-                                            <constraint firstItem="Elz-Lw-OMf" firstAttribute="width" secondItem="NU3-Kp-Lyr" secondAttribute="width" id="vEx-GY-fOq"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="w9C-SQ-iwA" firstAttribute="leading" secondItem="0Dh-ja-RGO" secondAttribute="leading" constant="-16" id="1c0-d0-Hx5"/>
+                            <constraint firstItem="mvr-hB-FnT" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="397-cG-qoj"/>
+                            <constraint firstItem="mvr-hB-FnT" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="4DH-Wr-qn3"/>
+                            <constraint firstAttribute="trailing" secondItem="mvr-hB-FnT" secondAttribute="trailing" id="4l6-eT-jxI"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="mvr-hB-FnT" secondAttribute="bottom" id="5Ro-U6-jA0"/>
                             <constraint firstItem="w9C-SQ-iwA" firstAttribute="top" secondItem="0Dh-ja-RGO" secondAttribute="top" constant="-96" id="Eao-Tj-opt"/>
                             <constraint firstItem="7We-9s-42J" firstAttribute="trailing" secondItem="w9C-SQ-iwA" secondAttribute="trailing" constant="-16" id="Exx-Zy-byg"/>
                             <constraint firstItem="w9C-SQ-iwA" firstAttribute="trailing" secondItem="0Dh-ja-RGO" secondAttribute="trailing" constant="16" id="Fic-E3-ruc"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="bJH-b1-Hib" secondAttribute="bottom" id="LKn-TV-Jqy"/>
-                            <constraint firstItem="mvr-hB-FnT" firstAttribute="bottom" secondItem="w9C-SQ-iwA" secondAttribute="bottom" id="Lkw-0o-dKH"/>
                             <constraint firstItem="w9C-SQ-iwA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="NoC-oM-vy5"/>
                             <constraint firstItem="w9C-SQ-iwA" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="O1m-O0-flz"/>
-                            <constraint firstItem="mvr-hB-FnT" firstAttribute="leading" secondItem="w9C-SQ-iwA" secondAttribute="leading" id="Sxf-WW-kXE"/>
                             <constraint firstItem="7We-9s-42J" firstAttribute="bottom" secondItem="w9C-SQ-iwA" secondAttribute="bottom" constant="-74" id="UHp-zu-N8y"/>
                             <constraint firstItem="7We-9s-42J" firstAttribute="leading" secondItem="w9C-SQ-iwA" secondAttribute="leading" constant="16" id="WUM-xV-cla"/>
                             <constraint firstItem="7We-9s-42J" firstAttribute="leading" secondItem="w9C-SQ-iwA" secondAttribute="leading" constant="16" id="YCI-Ou-DVm"/>
                             <constraint firstItem="7We-9s-42J" firstAttribute="trailing" secondItem="w9C-SQ-iwA" secondAttribute="trailing" constant="-16" id="YVi-S1-shg"/>
                             <constraint firstItem="7We-9s-42J" firstAttribute="bottom" secondItem="w9C-SQ-iwA" secondAttribute="bottom" constant="-64" id="a7R-iM-eMi"/>
-                            <constraint firstItem="mvr-hB-FnT" firstAttribute="top" secondItem="w9C-SQ-iwA" secondAttribute="top" id="i93-WN-6XC"/>
-                            <constraint firstItem="mvr-hB-FnT" firstAttribute="trailing" secondItem="w9C-SQ-iwA" secondAttribute="trailing" id="kpo-9S-xFQ"/>
                             <constraint firstItem="w9C-SQ-iwA" firstAttribute="leading" secondItem="0Dh-ja-RGO" secondAttribute="leading" constant="-16" id="mjc-Rf-PqY"/>
                             <constraint firstAttribute="trailing" secondItem="w9C-SQ-iwA" secondAttribute="trailing" id="oZ4-9l-ftJ"/>
                             <constraint firstItem="bJH-b1-Hib" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="pBM-Xx-vXX"/>
@@ -158,12 +158,15 @@
                         <outlet property="bottomTextField" destination="7We-9s-42J" id="cBi-zg-i60"/>
                         <outlet property="cameraButton" destination="5d6-eU-AxP" id="AIT-n6-O0v"/>
                         <outlet property="cancelButton" destination="aQL-mB-htI" id="uQG-nY-n5s"/>
+                        <outlet property="contentView" destination="NU3-Kp-Lyr" id="Goz-Ye-S1U"/>
+                        <outlet property="imageView" destination="Elz-Lw-OMf" id="Iuq-Lw-h3S"/>
+                        <outlet property="scrollView" destination="mvr-hB-FnT" id="4HD-TF-dSs"/>
                         <outlet property="topTextField" destination="0Dh-ja-RGO" id="b74-Ui-YqA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="213" y="336"/>
+            <point key="canvasLocation" x="380" y="347"/>
         </scene>
     </scenes>
 </document>
