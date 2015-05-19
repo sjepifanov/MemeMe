@@ -23,7 +23,7 @@
         <!--Meme Editor-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController title="Meme Editor" id="vXZ-lx-hvc" customClass="ViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Meme Editor" id="vXZ-lx-hvc" customClass="MemeEditorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -47,33 +47,66 @@
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Dh-ja-RGO" userLabel="Top Text Field">
-                                <rect key="frame" x="16" y="90" width="568" height="30"/>
+                                <rect key="frame" x="16" y="96" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7We-9s-42J" userLabel="Bottom Text Field">
-                                <rect key="frame" x="16" y="503" width="568" height="30"/>
+                                <rect key="frame" x="16" y="496" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="w9C-SQ-iwA" firstAttribute="top" secondItem="0Dh-ja-RGO" secondAttribute="top" constant="-90" id="Eao-Tj-opt"/>
+                            <constraint firstItem="w9C-SQ-iwA" firstAttribute="leading" secondItem="0Dh-ja-RGO" secondAttribute="leading" constant="-16" id="1c0-d0-Hx5"/>
+                            <constraint firstItem="w9C-SQ-iwA" firstAttribute="top" secondItem="0Dh-ja-RGO" secondAttribute="top" constant="-96" id="Eao-Tj-opt"/>
+                            <constraint firstItem="7We-9s-42J" firstAttribute="trailing" secondItem="w9C-SQ-iwA" secondAttribute="trailing" constant="-16" id="Exx-Zy-byg"/>
+                            <constraint firstItem="w9C-SQ-iwA" firstAttribute="trailing" secondItem="0Dh-ja-RGO" secondAttribute="trailing" constant="16" id="Fic-E3-ruc"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="bJH-b1-Hib" secondAttribute="bottom" id="LKn-TV-Jqy"/>
                             <constraint firstItem="w9C-SQ-iwA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="NoC-oM-vy5"/>
                             <constraint firstItem="w9C-SQ-iwA" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="O1m-O0-flz"/>
-                            <constraint firstItem="w9C-SQ-iwA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="SEE-IV-ohn"/>
-                            <constraint firstItem="7We-9s-42J" firstAttribute="bottom" secondItem="w9C-SQ-iwA" secondAttribute="bottom" constant="-67" id="UHp-zu-N8y"/>
+                            <constraint firstItem="7We-9s-42J" firstAttribute="bottom" secondItem="w9C-SQ-iwA" secondAttribute="bottom" constant="-74" id="UHp-zu-N8y"/>
+                            <constraint firstItem="7We-9s-42J" firstAttribute="leading" secondItem="w9C-SQ-iwA" secondAttribute="leading" constant="16" id="WUM-xV-cla"/>
                             <constraint firstItem="7We-9s-42J" firstAttribute="leading" secondItem="w9C-SQ-iwA" secondAttribute="leading" constant="16" id="YCI-Ou-DVm"/>
                             <constraint firstItem="7We-9s-42J" firstAttribute="trailing" secondItem="w9C-SQ-iwA" secondAttribute="trailing" constant="-16" id="YVi-S1-shg"/>
+                            <constraint firstItem="7We-9s-42J" firstAttribute="bottom" secondItem="w9C-SQ-iwA" secondAttribute="bottom" constant="-64" id="a7R-iM-eMi"/>
                             <constraint firstItem="w9C-SQ-iwA" firstAttribute="leading" secondItem="0Dh-ja-RGO" secondAttribute="leading" constant="-16" id="mjc-Rf-PqY"/>
                             <constraint firstAttribute="trailing" secondItem="w9C-SQ-iwA" secondAttribute="trailing" id="oZ4-9l-ftJ"/>
                             <constraint firstItem="bJH-b1-Hib" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="pBM-Xx-vXX"/>
                             <constraint firstItem="w9C-SQ-iwA" firstAttribute="trailing" secondItem="0Dh-ja-RGO" secondAttribute="trailing" constant="16" id="puz-OL-wtv"/>
+                            <constraint firstItem="w9C-SQ-iwA" firstAttribute="top" secondItem="0Dh-ja-RGO" secondAttribute="top" constant="-84" id="sD0-6m-xdU">
+                                <variation key="heightClass=compact" constant="-54"/>
+                            </constraint>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="w9C-SQ-iwA" secondAttribute="bottom" id="tfz-7a-10k"/>
                             <constraint firstAttribute="trailing" secondItem="bJH-b1-Hib" secondAttribute="trailing" id="vsF-0w-aGp"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1c0-d0-Hx5"/>
+                                <exclude reference="Fic-E3-ruc"/>
+                                <exclude reference="sD0-6m-xdU"/>
+                                <exclude reference="Exx-Zy-byg"/>
+                                <exclude reference="WUM-xV-cla"/>
+                                <exclude reference="a7R-iM-eMi"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="1c0-d0-Hx5"/>
+                                <exclude reference="Eao-Tj-opt"/>
+                                <include reference="Fic-E3-ruc"/>
+                                <exclude reference="mjc-Rf-PqY"/>
+                                <exclude reference="puz-OL-wtv"/>
+                                <include reference="sD0-6m-xdU"/>
+                                <include reference="Exx-Zy-byg"/>
+                                <exclude reference="UHp-zu-N8y"/>
+                                <include reference="WUM-xV-cla"/>
+                                <exclude reference="YCI-Ou-DVm"/>
+                                <exclude reference="YVi-S1-shg"/>
+                                <include reference="a7R-iM-eMi"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="w9v-xP-Bgu">
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="bJQ-kM-rLo"/>
@@ -82,6 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="213" y="336"/>
         </scene>
     </scenes>
 </document>
