@@ -13,6 +13,7 @@
 		854641E01B0B19C900575307 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 854641DF1B0B19C900575307 /* Images.xcassets */; };
 		854641E31B0B19C900575307 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 854641E11B0B19C900575307 /* LaunchScreen.xib */; };
 		854641EF1B0B19C900575307 /* MemeMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854641EE1B0B19C900575307 /* MemeMeTests.swift */; };
+		854641F91B0B37D500575307 /* textFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854641F81B0B37D500575307 /* textFieldDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		854641E81B0B19C900575307 /* MemeMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemeMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		854641ED1B0B19C900575307 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		854641EE1B0B19C900575307 /* MemeMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeMeTests.swift; sourceTree = "<group>"; };
+		854641F81B0B37D500575307 /* textFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = textFieldDelegate.swift; path = MemeMe/textFieldDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				854641D81B0B19C900575307 /* AppDelegate.swift */,
 				854641DA1B0B19C900575307 /* MemeEditorViewController.swift */,
+				854641FA1B0B37E800575307 /* Delegates */,
 				854641DC1B0B19C900575307 /* Main.storyboard */,
 				854641DF1B0B19C900575307 /* Images.xcassets */,
 				854641E11B0B19C900575307 /* LaunchScreen.xib */,
@@ -110,6 +113,15 @@
 				854641ED1B0B19C900575307 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		854641FA1B0B37E800575307 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				854641F81B0B37D500575307 /* textFieldDelegate.swift */,
+			);
+			name = Delegates;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				854641DB1B0B19C900575307 /* MemeEditorViewController.swift in Sources */,
+				854641F91B0B37D500575307 /* textFieldDelegate.swift in Sources */,
 				854641D91B0B19C900575307 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
