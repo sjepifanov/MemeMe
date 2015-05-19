@@ -24,7 +24,7 @@ class textFieldDelegate: NSObject,  UITextFieldDelegate {
     // Set preset text if text field is empty. topTextField tag is 0 bottomTextField tag is 1
     if textField.text.isEmpty && textField.tag == 0 {
       textField.text = "TOP"
-    } else {
+    } else if textField.text.isEmpty && textField.tag == 1{
       textField.text = "BOTTOM"
     }
   }

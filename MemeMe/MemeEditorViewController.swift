@@ -8,7 +8,9 @@
 
 import UIKit
 
-class MemeEditorViewController: UIViewController, UITextFieldDelegate {
+//, UITextFieldDelegate
+
+class MemeEditorViewController: UIViewController {
 
   // MARK: Outlets
   @IBOutlet weak var topTextField: UITextField!
@@ -19,7 +21,12 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var cancelButton: UIBarButtonItem!
   
   //MARK: Declarations
+  
+  let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
   let textDelegate = textFieldDelegate()
+  
+  let imagePicker = imagePickerDelegate()
   
   let memeTextAttributes = [
     NSStrokeColorAttributeName : UIColor.blackColor(),
@@ -62,6 +69,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate {
     topTextField.text = "TOP"
     bottomTextField.text = "BOTTOM"
     
+    
     subscribeToKeyboardNotifications()
     
     
@@ -70,6 +78,35 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate {
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
     unsubscribeFromKeyboardNotifications()
+  }
+  
+  // MARK: Actions
+  
+  @IBAction func albumButton(sender: AnyObject) {
+    let imagePickerController = UIImagePickerController()
+    imagePickerController.delegate = imagePicker
+    imagePickerController.sourceType = .PhotoLibrary
+    self.presentViewController(imagePickerController, animated: true, completion: nil)
+
+  }
+  
+  @IBAction func cameraButton(sender: AnyObject) {
+    let imagePickerController = UIImagePickerController()
+    imagePickerController.delegate = imagePicker
+    //select source type for UIImagePickerController
+    imagePickerController.sourceType = .Camera
+    self.presentViewController(imagePickerController, animated: true, completion: nil)
+    var info = [NSObject : AnyObject]()
+    imagePicker.imagePickerController(imagePickerController, didFinishPickingMediaWithInfo: info)
+    if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+      println("picked object from delegate")
+
+    }
+  }
+  
+  @IBAction func actionButton(sender: AnyObject) {
+  }
+  @IBAction func cancelButton(sender: AnyObject) {
   }
   
   // MARK: Methods
@@ -104,7 +141,6 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate {
   // MARK: Selectors for notifications
   
   // TODO: Text is covered by Navigation bar in Landscape. May hide toolbar to allow more space.
-  // TODO: If keyboard is on screen and device rotated view did not slide down correctly. Either disallow rotation while editing. Dismiss keyboard or recalculate spece instead of using previous value.
   /**
   Slide view frame up by height of on screen keyboard frame.
   
