@@ -22,6 +22,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   @IBOutlet weak var scrollView: UIScrollView!
   @IBOutlet weak var contentView: UIView!
   @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var toolBar: UIToolbar!
   
   //MARK: Declarations
   
@@ -44,6 +45,16 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // Top and bottom insets for Nav and Tool bars
     // Seems like it's affecting scrollViewFrame when done here. Try in ViewDidLoad insead.
     scrollView.contentInset=UIEdgeInsetsMake(64.0,0.0,44.0,0.0)
+    
+    // Enable user interaction to recognize touches and gestures
+    imageView.userInteractionEnabled = true
+    
+    // Initialize Gesture Recognizer
+    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideBars:")
+    tapGestureRecognizer.numberOfTapsRequired = 1
+    
+    // Add Gesture Recognizer to image view
+    imageView.addGestureRecognizer(tapGestureRecognizer)
 
   }
   
@@ -56,9 +67,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
 
-    // TODO: Enable when image is pickec from source. May also check if text has been edited in text fields
-    //actionButton.enabled = imageEditorView.image ? true : false
-    
+    // TODO: Enable when image is pickecd from source. May also check if text has been edited in text fields
+    actionButton.enabled = actionButtonState()
+
     // Set textField text attributes.
     topTextField.defaultTextAttributes = memeTextAttributes
     bottomTextField.defaultTextAttributes = memeTextAttributes
@@ -78,7 +89,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // Set empty textField text
     topTextField.text = "TOP"
     bottomTextField.text = "BOTTOM"
-    
     
     subscribeToKeyboardNotifications()
     
@@ -203,6 +213,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
       
       
       // TODO: Zoom is not working. AutoLayout issue maybe!
+      // TODO: Scroll View fram in Landscape is off. Redo Autolayout.
       scrollView.contentSize = image.size
       
       let scrollViewFrame = scrollView.frame
@@ -228,7 +239,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     dismissViewControllerAnimated(true, completion: nil)
   }
 
-  // MARK: Scroll View Delegates
+  // MARK: Scroll View Delegates and Methods
   
   func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
     return imageView
@@ -260,7 +271,71 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
   }
 
+  // MARK: Creating and saving Meme methods
   
+  /**
+  Create memed image by capturing current view frame.
+  */
+  func generateMemedImage() -> UIImage {
+    // Hide navigation bar and toolbar
+    navigationController?.setNavigationBarHidden(true, animated: false)
+    toolBar.hidden = true
+    
+    // Capture view frame
+    UIGraphicsBeginImageContext(self.view.frame.size)
+    self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+    let imageMemed: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    // Unhide navigation bar and toolbar
+    navigationController?.setNavigationBarHidden(false, animated: false)
+    toolBar.hidden = false
+    
+    return imageMemed
+  }
+  
+  /**
+  Save meme information to Meme struct
+  */
+  
+  func save(){
+    var imageMemed = generateMemedImage()
+    
+    //create meme object
+    var meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text, originalImage: imageView.image!, memedImage: imageMemed)
+    
+    //Add meme to the memes array in Application Delegate (AppDelegate.swift)
+    let object = UIApplication.sharedApplication().delegate
+    let appDelegate = object as! AppDelegate
+    appDelegate.memes.append(meme)
+  }
+
+  /**
+  Set state for action button
+  
+  :returns: Bool
+  */
+  func actionButtonState() -> Bool{
+    if let _ = imageView.image{
+      return true
+    }else{
+      return false
+    }
+  }
+  
+  
+  // MARK: Hide bars for Gesture Recognizer
+  
+  /**
+  Hide Navigation Bar and ToolBar
+  
+  :param: recognizer UITapGestureREcognizer
+  */
+  func hideBars(recognizer: UITapGestureRecognizer) {
+    navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: false) //or animated: false
+    toolBar.hidden = toolBar.hidden ? false : true
+  }
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
