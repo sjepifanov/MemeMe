@@ -49,6 +49,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // Enable user interaction to recognize touches and gestures
     imageView.userInteractionEnabled = true
     
+    // That fixing Gesture recognizer but works only when image is added. Assume that image view frame before is 0.0.0.0
+    //scrollView.bringSubviewToFront(imageView)
+    
+    // TODO: Recognizer is working on image View but only after image is loaded.
     // Initialize Gesture Recognizer
     let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideBars:")
     tapGestureRecognizer.numberOfTapsRequired = 1
@@ -58,9 +62,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
   }
   
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
-  }
+  //override func viewDidLayoutSubviews() {
+  //  super.viewDidLayoutSubviews()
+  //}
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
@@ -89,6 +93,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // Set empty textField text
     topTextField.text = "TOP"
     bottomTextField.text = "BOTTOM"
+    
+    scrollView.delegate = self
     
     subscribeToKeyboardNotifications()
     
@@ -185,9 +191,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   func keyboardWillShow(notification: NSNotification) {
     println("Show: got notification")
     println(self.view.frame.origin.y)
+    
     if bottomTextField.isFirstResponder(){
+      
+      // TODO: Hide Bars. Doing test now. Not looking good the view did not slide up. Though bars did disappear. The problem is with Navbar called through Nav Controller. will try to call it through proprty. Seems like it redraw the view moving origin to y. Should place text differently instead.
+
       view.frame.origin.y -= getKeyboardHeight(notification)
       println(self.view.frame.origin.y)
+      
     }
   }
   
@@ -199,8 +210,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   */
   func keyboardWillHide(notification: NSNotification) {
     println("Hide: got notification")
+    
+    // TODO: Show bars.
     println(self.view.frame.origin.y)
+    
+    // That seems like proper way to get rid of view slide on rotation.
     view.frame.origin.y = 0.0
+    
+    // Old method view was sliding up on rotation.
     //if bottomTextField.isFirstResponder(){
     //  self.view.frame.origin.y += getKeyboardHeight(notification)
     //  println(self.view.frame.origin.y)
@@ -228,30 +245,39 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
       // Dismiss UIImagePickerController when selection is made
       dismissViewControllerAnimated(true, completion: nil)
       
+      
       imageView.image = image
       println("imageView frame: \(imageView.frame.size)")
       println("contentView frame: \(contentView.frame.size)")
-      println("scrollView frame: \(scrollView.frame.size)")
       
-      
-      // TODO: Zoom is not working. AutoLayout issue maybe!
-      // TODO: Scroll View fram in Landscape is off. Redo Autolayout.
+
+      // TODO: Check more articles on Autolayout with Scroll View. So far it's just not working at all.
       scrollView.contentSize = image.size
+      println("scrollView contentSize: \(scrollView.contentSize)")
+      println("scrollView frame: \(scrollView.frame.size)")
       
       let scrollViewFrame = scrollView.frame
       let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
       let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height
+      
+      // TODO: Should play with Zoom Scale to present picture taking whole screen and as nice as possible
+      // take care of inset whenstart showing do programmable zoom otherwise image did not scroll
+      // check frame. Think if you need to hide bars. Not alsways pretty.
+      
       let minScale = min(scaleWidth, scaleHeight)
+      //let minScale = max(scaleWidth, scaleHeight)
+      println(minScale)
       
       scrollView.minimumZoomScale = minScale
       
       scrollView.maximumZoomScale = 1
       scrollView.zoomScale = minScale
-
+      
       println("imageView frame: \(imageView.frame.size)")
       println("contentView frame: \(contentView.frame.size)")
       println("scrollView frame: \(scrollView.frame.size)")
       
+      centerScrollViewContents()
     }
   }
   
@@ -264,17 +290,22 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   // MARK: Scroll View Delegates and Methods
   
   func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-    return imageView
+    println("viewForZooming")
+    //return imageView
+    return contentView
   }
   
   func scrollViewDidZoom(scrollView: UIScrollView) {
+    println("did Zoom")
     centerScrollViewContents()
   }
   
   func centerScrollViewContents() {
     
     let boundsSize = scrollView.bounds.size
-    var contentsFrame = imageView.frame
+    // Changing to Content View to check the results
+    var contentsFrame = contentView.frame
+    //var contentsFrame = imageView.frame
     
     if contentsFrame.size.width < boundsSize.width {
       
@@ -289,7 +320,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
       contentsFrame.origin.y = 0
     }
     
-    imageView.frame = contentsFrame
+    contentView.frame = contentsFrame
+    //imageView.frame = contentsFrame
     
   }
 
@@ -353,6 +385,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   
   :param: recognizer UITapGestureREcognizer
   */
+  
+  // TODO: Check if I need recognizer here? I may use this method in generating meme method if I do not require recognizer as patrameter.
   func hideBars(recognizer: UITapGestureRecognizer) {
     navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: false) //or animated: false
     toolBar.hidden = toolBar.hidden ? false : true
