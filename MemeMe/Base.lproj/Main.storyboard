@@ -8,7 +8,7 @@
         <!--Navigation Controller-->
         <scene sceneID="bQe-rf-zZs">
             <objects>
-                <navigationController id="sre-9c-C3g" sceneMemberID="viewController">
+                <navigationController extendedLayoutIncludesOpaqueBars="YES" id="sre-9c-C3g" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4KD-f7-d8K">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -241,6 +241,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="aQL-mB-htI">
                             <connections>
                                 <action selector="cancelButton:" destination="vXZ-lx-hvc" id="MIx-eH-Jvj"/>
+                                <segue destination="Q7Y-E6-5qz" kind="show" id="Lr4-OA-pBO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -261,10 +262,10 @@
             </objects>
             <point key="canvasLocation" x="192" y="337"/>
         </scene>
-        <!--Meme Table View-->
+        <!--Sent Memes-->
         <scene sceneID="TrZ-Vp-o6i">
             <objects>
-                <tableViewController storyboardIdentifier="MemeTableViewController" title="Meme Table View" id="tKx-tR-qcB" customClass="MemeTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MemeTableViewController" title="Sent Memes" id="tKx-tR-qcB" customClass="MemeTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pyg-yJ-L27">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -324,10 +325,10 @@
             </objects>
             <point key="canvasLocation" x="1808" y="668"/>
         </scene>
-        <!--Meme Collection View-->
+        <!--Sent Memes-->
         <scene sceneID="4oi-Sf-h7U">
             <objects>
-                <collectionViewController title="Meme Collection View" id="cAN-HR-Qlr" customClass="MemeCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController title="Sent Memes" id="cAN-HR-Qlr" customClass="MemeCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="w9Y-Ci-AJ8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -387,7 +388,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="tKx-tR-qcB" kind="relationship" relationship="rootViewController" id="zmr-f8-HpU"/>
+                        <segue destination="tKx-tR-qcB" kind="relationship" relationship="rootViewController" id="WoP-DT-Eye"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAj-rT-wy1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -404,7 +405,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="cAN-HR-Qlr" kind="relationship" relationship="rootViewController" id="R6s-Qz-REQ"/>
+                        <segue destination="cAN-HR-Qlr" kind="relationship" relationship="rootViewController" id="eyq-D2-mzW"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="83c-XI-Gfu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -414,7 +415,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="EuI-xk-HXu">
             <objects>
-                <tabBarController id="Q7Y-E6-5qz" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="Q7Y-E6-5qz" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="XrR-Ph-5XE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -430,10 +431,10 @@
             </objects>
             <point key="canvasLocation" x="192" y="1008"/>
         </scene>
-        <!--Meme Detail View-->
+        <!--Meme Detail-->
         <scene sceneID="DqJ-JW-aLw">
             <objects>
-                <viewController storyboardIdentifier="MemeDetailViewController" title="Meme Detail View" id="j9G-Rc-D8d" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeDetailViewController" title="Meme Detail" id="j9G-Rc-D8d" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Pi-je-Ehu"/>
                         <viewControllerLayoutGuide type="bottom" id="vmO-PH-grF"/>
@@ -454,7 +455,13 @@
                             <constraint firstAttribute="trailing" secondItem="qnG-M9-Nlh" secondAttribute="trailing" id="R3A-V9-H9o"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="e8u-m1-AOn"/>
+                    <navigationItem key="navigationItem" id="e8u-m1-AOn">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="gWP-Gv-Jw4">
+                            <connections>
+                                <segue destination="vXZ-lx-hvc" kind="show" id="44u-gi-wyA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="memeDetailImage" destination="qnG-M9-Nlh" id="QAo-7R-4Lm"/>
                     </connections>
@@ -480,4 +487,7 @@
             <point key="canvasLocation" x="-500" y="1709"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="8Mx-2R-oPS"/>
+    </inferredMetricsTieBreakers>
 </document>

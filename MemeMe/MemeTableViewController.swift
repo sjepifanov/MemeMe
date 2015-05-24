@@ -46,7 +46,6 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
     super.viewDidLoad()
     
     self.tableView.allowsMultipleSelection = true
-    
     tableView.reloadData()
     
     // make our view consistent
@@ -64,6 +63,9 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
     tableView.reloadData()
     
     if appDelegate.memes.count == 0{
+        // TODO: Remove if find unnessary
+        //performSegueWithIdentifier("imagePickerController", sender: self)
+
       let imagePickerController = self.storyboard!.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
       navigationController!.popViewControllerAnimated(animated)
       imagePickerController.hidesBottomBarWhenPushed = true
@@ -212,7 +214,7 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
     }else{
       // TODO: Check button functionality. Readd if necessary.
       // Not in editing mode.
-      //navigationItem.leftBarButtonItem = addButton
+      // navigationItem.leftBarButtonItem = nil
       
       // Show the edit button, but disable the edit button if there's nothing to edit.
       editButton.enabled = appDelegate.memes.isEmpty ? false : true
@@ -232,8 +234,12 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
       deleteButton.title = "Delete All"
     }
   }
-  
-  
-  
+
+    // TODO: problems with nav buttons when pushing controllers programatically Check if segue will work better.
+/*
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    segue.destinationViewController as! MemeEditorViewController
+  }
+*/
   
 }

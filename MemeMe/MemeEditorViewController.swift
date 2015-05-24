@@ -68,7 +68,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     // Top and bottom insets for Nav and Tool bars
     // Seems like it's affecting scrollViewFrame when done here. Try in ViewDidLoad insead.
-    scrollView.contentInset=UIEdgeInsetsMake(64.0,0.0,44.0,0.0)
+    //scrollView.contentInset=UIEdgeInsetsMake(64.0,0.0,44.0,0.0)
     
     // Enable user interaction to recognize touches and gestures
     imageView.userInteractionEnabled = true
@@ -134,10 +134,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         println("completed action \(activityType)")
         self.save()
         
-        // TODO: Create Table View Controller
+        // TODO: Need to push to/from either tab bar controller or use segue. Otherwise bottom bar did not appear.
         let tableViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeTableViewController") as! MemeTableViewController
+        self.navigationController!.hidesBottomBarWhenPushed = false
         self.navigationController!.pushViewController(tableViewController, animated: true)
-        
+
       }else{
         println("something wrong: \(activityType)")
       }
