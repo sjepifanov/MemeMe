@@ -45,9 +45,9 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.tableView.allowsMultipleSelection = true
+    self.tableView.allowsMultipleSelectionDuringEditing = true
     tableView.reloadData()
-    
+
     // make our view consistent
     self.updateButtonsToMatchTableState()
     
@@ -57,17 +57,19 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
     super.viewWillAppear(animated)
     
     // TODO: Read rubric again to check exact requirements. Logic below may require changes.
+  
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 80
     
-    // Switch to image Editor is there is no saved Memes
-    
+
     tableView.reloadData()
     
+    // Switch to image Editor is there is no saved Memes
     if appDelegate.memes.count == 0{
         // TODO: Remove if find unnessary
         //performSegueWithIdentifier("imagePickerController", sender: self)
 
       let imagePickerController = self.storyboard!.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
-      navigationController!.popViewControllerAnimated(animated)
       imagePickerController.hidesBottomBarWhenPushed = true
       navigationController!.pushViewController(imagePickerController, animated: true)
     }
@@ -79,6 +81,13 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
   
   //@IBAction func addAction(sender: AnyObject) {
   //}
+  
+
+  @IBAction func addAction(sender: AnyObject) {
+    let imagePickerController = self.storyboard!.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
+    imagePickerController.hidesBottomBarWhenPushed = true
+    navigationController!.pushViewController(imagePickerController, animated: true)
+  }
   
   @IBAction func deleteAction(sender: AnyObject) {
     
@@ -128,15 +137,18 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
-    let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell
+    //let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell
+    let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! MemeTableViewCell
     let meme = appDelegate.memes[indexPath.row]
     
     // Set the name and image
-    cell.textLabel?.text = meme.topText
-    cell.detailTextLabel?.text = meme.bottomText
-    
-    //TODO: Not sure why that is not working. Check with imagePicker Example.
-    cell.imageView?.image = meme.originalImage
+    //cell.textLabel?.text = meme.topText
+    //cell.detailTextLabel?.text = meme.bottomText
+    cell.topTextLabel?.text = meme.topText
+    cell.bottomTextLabel?.text = meme.bottomText
+
+    //cell.imageView?.image = meme.originalImage
+    cell.cellImageView?.image = meme.originalImage
     
     return cell
   }
@@ -214,7 +226,7 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
     }else{
       // TODO: Check button functionality. Readd if necessary.
       // Not in editing mode.
-      // navigationItem.leftBarButtonItem = nil
+      navigationItem.leftBarButtonItem = addButton
       
       // Show the edit button, but disable the edit button if there's nothing to edit.
       editButton.enabled = appDelegate.memes.isEmpty ? false : true

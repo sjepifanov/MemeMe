@@ -136,7 +136,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         // TODO: Need to push to/from either tab bar controller or use segue. Otherwise bottom bar did not appear.
         let tableViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeTableViewController") as! MemeTableViewController
-        self.navigationController!.hidesBottomBarWhenPushed = false
         self.navigationController!.pushViewController(tableViewController, animated: true)
 
       }else{
