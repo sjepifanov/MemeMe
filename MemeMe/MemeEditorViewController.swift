@@ -66,11 +66,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     scrollView.delegate = self
     scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
     
-    // TODO: Delete section below. Should work without it.
-    // Top and bottom insets for Nav and Tool bars. Now set in Storyboard.
-    // Seems like it's affecting scrollViewFrame when done here. Try in ViewDidLoad insead.
-    //scrollView.contentInset=UIEdgeInsetsMake(64.0,0.0,44.0,0.0)
-    
     // Enable user interaction to recognize touches and gestures
     imageView.userInteractionEnabled = true
     
@@ -82,10 +77,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     imageView.addGestureRecognizer(tapGestureRecognizer)
     
   }
-  // TODO: Check if Layout Subview is necessary. Maight be needed for better operation in landscape mode.
-  //override func viewDidLayoutSubviews() {
-  //  super.viewDidLayoutSubviews()
-  //}
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
@@ -133,24 +124,33 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     let actionController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
     self.presentViewController(actionController, animated: true, completion: nil)
     
-    //could be set in short form: actionController.completionWithItemsHandler = {action, result, object, error in }
-    actionController.completionWithItemsHandler = {
-      (activityType: String!, completed: Bool, returnedItems: [AnyObject]!, activityError:NSError!) in
-      if completed{
-        println("completed action \(activityType)")
+    actionController.completionWithItemsHandler = {action, result, object, error in
+      if result{
+        println("completed action \(action)")
         self.save()
         
-        self.performSegueWithIdentifier("tabBarController", sender: self)
+        var storyboard = UIStoryboard (name: "Main", bundle: nil)
+        let tableViewController = storyboard.instantiateViewControllerWithIdentifier("MemeTableViewController") as! MemeTableViewController
+        self.hidesBottomBarWhenPushed = false
+        tableViewController.hidesBottomBarWhenPushed = false
+        if let navigationcontroller = self.navigationController {
+          navigationcontroller.pushViewController(tableViewController, animated: true)
+        }
         
       }else{
-        println("something wrong: \(activityType)")
+        println("something wrong: \(action)")
       }
     }
-    //actionController.completionWithItemsHandler = {action, result, object, error in }
   }
   
   @IBAction func cancelButton(sender: AnyObject) {
-    self.performSegueWithIdentifier("tabBarController", sender: self)
+    var storyboard = UIStoryboard (name: "Main", bundle: nil)
+    let tableViewController = storyboard.instantiateViewControllerWithIdentifier("MemeTableViewController") as! MemeTableViewController
+    self.hidesBottomBarWhenPushed = false
+    tableViewController.hidesBottomBarWhenPushed = false
+    if let navigationcontroller = self.navigationController {
+      navigationcontroller.pushViewController(tableViewController, animated: true)
+    }
   }
   
   // MARK: Methods
@@ -255,14 +255,16 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
       // take care of inset whenstart showing do programmable zoom otherwise image did not scroll
       // check frame. Think if you need to hide bars. Not alsways pretty.
       
-      //let minScale = min(scaleWidth, scaleHeight)
-      let minScale = max(scaleWidth, scaleHeight)
-      println(minScale)
+      let minScale = min(scaleWidth, scaleHeight)
+      //let minScale = max(scaleWidth, scaleHeight)
+      
+      //println(minScale)
       
       scrollView.minimumZoomScale = minScale
       
       scrollView.maximumZoomScale = 1
       scrollView.zoomScale = minScale
+
       
       println("imageView frame: \(imageView.frame.size)")
       println("contentView frame: \(contentView.frame.size)")
@@ -378,12 +380,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   func hideBars(recognizer: UITapGestureRecognizer) {
     navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: false) //or animated: false
     toolBar.hidden = toolBar.hidden ? false : true
-  }
-  
-  // MARK: Prepare for segue.
-  // TODO: Segue to Tab Bar Controller does show toolbar, but Nav bar buttons are not shown now.
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    segue.destinationViewController as! UITabBarController
   }
   
 }

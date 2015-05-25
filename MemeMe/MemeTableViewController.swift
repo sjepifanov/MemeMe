@@ -36,9 +36,12 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
     
     // Switch to image Editor is there is no saved Memes
     if appDelegate.memes.count == 0{
-      let imagePickerController = self.storyboard!.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
+      let storyboard = UIStoryboard (name: "Main", bundle: nil)
+      let imagePickerController = storyboard.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
       imagePickerController.hidesBottomBarWhenPushed = true
-      navigationController!.pushViewController(imagePickerController, animated: true)
+      if let navigationcontroller = self.navigationController {
+        navigationcontroller.pushViewController(imagePickerController, animated: true)
+      }
     }
     
     // make our view consistent
@@ -63,9 +66,12 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
   // MARK: Actions for Add, Edit, Delete and Cancel buttons
   
   @IBAction func addAction(sender: AnyObject) {
-    let imagePickerController = self.storyboard!.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
+    let storyboard = UIStoryboard (name: "Main", bundle: nil)
+    let imagePickerController = storyboard.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
     imagePickerController.hidesBottomBarWhenPushed = true
-    navigationController!.pushViewController(imagePickerController, animated: true)
+    if let navigationcontroller = self.navigationController {
+     navigationcontroller.pushViewController(imagePickerController, animated: true)
+    }
   }
   
   @IBAction func deleteAction(sender: AnyObject) {
@@ -137,9 +143,13 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
       // Update the delete button's title based on how many items are selected.
       updateButtonsToMatchTableState()
     }else{
-      let detailController = storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController")! as! MemeDetailViewController
+      let storyboard = UIStoryboard (name: "Main", bundle: nil)
+      let detailController = storyboard.instantiateViewControllerWithIdentifier("MemeDetailViewController")! as! MemeDetailViewController
       detailController.meme = appDelegate.memes[indexPath.row]
-      navigationController!.pushViewController(detailController, animated: true)
+      detailController.hidesBottomBarWhenPushed = true
+      if let navigationcontroller = self.navigationController {
+       navigationcontroller.pushViewController(detailController, animated: true)
+      }
     }
   }
   

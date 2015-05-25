@@ -25,18 +25,19 @@ class MemeDetailViewController: UIViewController {
     if let index = find(appDelegate.memes, meme) {
       appDelegate.memes.removeAtIndex(index)
     }
+    if let navigationcontroller = self.navigationController {
+     navigationcontroller.popToRootViewControllerAnimated(true)
+    }
   }
   
   @IBAction func openInImageEditor(sender: AnyObject) {
-    performSegueWithIdentifier("imagePickerController", sender: self)
+    let storyboard = UIStoryboard (name: "Main", bundle: nil)
+    let imagePickerController = storyboard.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
+    imagePickerController.hidesBottomBarWhenPushed = true
+    imagePickerController.meme = meme
+    if let navigationcontroller = self.navigationController {
+      navigationcontroller.pushViewController(imagePickerController, animated: true)
+    }
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    let imagePickerController = storyboard?.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
-    imagePickerController.meme = meme
-    if let navigationController = self.navigationController {
-      navigationController.pushViewController(imagePickerController, animated: true)
-    }
-    
-  }
 }

@@ -21,6 +21,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
   
   
   // MARK: Declarations
+  
   var selecting: Bool = false {
     didSet {
       collectionView?.allowsMultipleSelection = selecting
@@ -29,6 +30,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
     }
   }
   var objectsToDelete = [Meme]()
+  let cellIdentifier = "MemeCollectionViewCell"
   
   //MARK: View
   override func viewWillAppear(animated: Bool) {
@@ -51,9 +53,12 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
   // MARK: Add, Delete, Edit, Cancel Actions
   
   @IBAction func addAction(sender: AnyObject) {
-    let imagePickerController = self.storyboard!.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
+    let storyboard = UIStoryboard (name: "Main", bundle: nil)
+    let imagePickerController = storyboard.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
     imagePickerController.hidesBottomBarWhenPushed = true
-    navigationController!.pushViewController(imagePickerController, animated: true)
+    if let navigationcontroller = self.navigationController {
+      navigationcontroller.pushViewController(imagePickerController, animated: true)
+    }
   }
   
   @IBAction func editAction(sender: AnyObject) {
@@ -66,12 +71,12 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
     // Preparing UIAlertController to present the alert on deletion
     let cancelTitle = "Cancel"
     let okTitle = "OK"
-    var alertTitle = "Remove villains"
+    var alertTitle = "Remove memes"
     var actionTitle = "Are you sure you want to remove these items?"
     
     if let indexPaths = collectionView?.indexPathsForSelectedItems() {
       if indexPaths.count == 1 {
-        alertTitle = "Remove villain"
+        alertTitle = "Remove meme"
         actionTitle = "Are you sure you want to remove this item?"
       }
     }
@@ -99,7 +104,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
   }
   
   override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MemeCollectionViewCell", forIndexPath: indexPath) as! MemeCollectionViewCell
+    let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as! MemeCollectionViewCell
     let meme = appDelegate.memes[indexPath.row]
     cell.memeCellImage?.image = meme.memedImage
     
@@ -121,9 +126,13 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
       updateButtonsToMatchTableState()
       
     }else{
-    let detailController = storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController")! as! MemeDetailViewController
-    detailController.meme = appDelegate.memes[indexPath.row]
-    navigationController!.pushViewController(detailController, animated: true)
+      let storyboard = UIStoryboard (name: "Main", bundle: nil)
+      let detailController = storyboard.instantiateViewControllerWithIdentifier("MemeDetailViewController")! as! MemeDetailViewController
+      detailController.meme = appDelegate.memes[indexPath.row]
+      detailController.hidesBottomBarWhenPushed = true
+      if let navigationcontroller = self.navigationController {
+        navigationcontroller.pushViewController(detailController, animated: true)
+      }
     }
   }
 
