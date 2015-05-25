@@ -27,6 +27,16 @@ class MemeDetailViewController: UIViewController {
     }
   }
   
+  @IBAction func openInImageEditor(sender: AnyObject) {
+    performSegueWithIdentifier("imagePickerController", sender: self)
+  }
   
-  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    let imagePickerController = storyboard?.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
+    imagePickerController.meme = meme
+    if let navigationController = self.navigationController {
+      navigationController.pushViewController(imagePickerController, animated: true)
+    }
+    
+  }
 }

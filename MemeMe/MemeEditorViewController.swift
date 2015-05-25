@@ -26,6 +26,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   
   let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
   
+  var meme: Meme!
+  
   let textDelegate = textFieldDelegate()
   
   let memeTextAttributes = [
@@ -89,6 +91,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     super.viewWillAppear(animated)
 
     println("Editor ViewWillAppear")
+    
+    if let _ = meme {
+      imageView.image = meme.originalImage
+      topTextField.text = meme.topText
+      bottomTextField.text = meme.bottomText
+    }
     
     // Enable action button when picture is loaded.
     actionButton.enabled = actionButtonState()
