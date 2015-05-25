@@ -508,9 +508,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="e8u-m1-AOn">
-                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="gWP-Gv-Jw4"/>
+                        <barButtonItem key="rightBarButtonItem" title="Delete" id="gWP-Gv-Jw4">
+                            <connections>
+                                <action selector="deleteAction:" destination="j9G-Rc-D8d" id="Ls2-Dj-eZo"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deleteButton" destination="gWP-Gv-Jw4" id="lVu-5y-NhR"/>
                         <outlet property="memeDetailImage" destination="qnG-M9-Nlh" id="QAo-7R-4Lm"/>
                     </connections>
                 </viewController>
