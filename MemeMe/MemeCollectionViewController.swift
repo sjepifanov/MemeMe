@@ -33,13 +33,14 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
   //MARK: View
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    //collectionView?.delegate = self
+    println("Collection ViewWillAppear")
     self.collectionView?.reloadData()
     updateButtonsToMatchTableState()
   }
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
+    println("Collection ViewWillDisappear")
     if selecting {
       self.selecting = !selecting
     }
@@ -142,14 +143,6 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
         for object in objectsToDelete {
           if let index = find(appDelegate.memes, object){
             appDelegate.memes.removeAtIndex(index)
-            
-            // Another method is to use .filter to remove objects from array
-            //
-            // func removeVillain(object: Villain) {
-            //   appDelegate.memes = appDelegate.memes.filter( {$0 != object} )
-            // }
-            //
-            // And another is to extend Array functionality. Not covered here.
           }
         }
         collectionView?.deleteItemsAtIndexPaths(selectedRows)

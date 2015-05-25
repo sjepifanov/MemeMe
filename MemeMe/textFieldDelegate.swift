@@ -11,7 +11,6 @@ import UIKit
 
 class textFieldDelegate: NSObject,  UITextFieldDelegate {
   
-
   func textFieldDidBeginEditing(textField: UITextField) {
     println("begin editing: \(textField.tag)")
     // Clear textField of preset text.

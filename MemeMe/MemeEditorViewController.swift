@@ -8,8 +8,6 @@
 
 import UIKit
 
-//, UITextFieldDelegate
-
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
 
   // MARK: Outlets
@@ -40,7 +38,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   //MARK: View
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    println("Editor ViewDidLoad")
     cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
     
     // Set textField text attributes.
@@ -66,17 +64,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     scrollView.delegate = self
     scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
     
-    // Top and bottom insets for Nav and Tool bars
+    // TODO: Delete section below. Should work without it.
+    // Top and bottom insets for Nav and Tool bars. Now set in Storyboard.
     // Seems like it's affecting scrollViewFrame when done here. Try in ViewDidLoad insead.
     //scrollView.contentInset=UIEdgeInsetsMake(64.0,0.0,44.0,0.0)
     
     // Enable user interaction to recognize touches and gestures
     imageView.userInteractionEnabled = true
     
-    // That fixing Gesture recognizer but works only when image is added. Assume that image view frame before is 0.0.0.0
-    //scrollView.bringSubviewToFront(imageView)
-    
-    // TODO: Recognizer is working on image View but only after image is loaded.
     // Initialize Gesture Recognizer
     let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideBars:")
     tapGestureRecognizer.numberOfTapsRequired = 1
@@ -85,21 +80,24 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     imageView.addGestureRecognizer(tapGestureRecognizer)
     
   }
-  
+  // TODO: Check if Layout Subview is necessary. Maight be needed for better operation in landscape mode.
   //override func viewDidLayoutSubviews() {
   //  super.viewDidLayoutSubviews()
   //}
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+
+    println("Editor ViewWillAppear")
     
-    // TODO: Enable when image is pickecd from source. May also check if text has been edited in text fields
+    // Enable action button when picture is loaded.
     actionButton.enabled = actionButtonState()
     
     subscribeToKeyboardNotifications()
   }
   
   override func viewWillDisappear(animated: Bool) {
+    println("Editor ViewWillDisappear")
     super.viewWillDisappear(animated)
     unsubscribeFromKeyboardNotifications()
   }
@@ -134,10 +132,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         println("completed action \(activityType)")
         self.save()
         
-        // TODO: Need to push to/from either tab bar controller or use segue. Otherwise bottom bar did not appear.
-        let tableViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeTableViewController") as! MemeTableViewController
-        self.navigationController!.pushViewController(tableViewController, animated: true)
-
+        self.performSegueWithIdentifier("tabBarController", sender: self)
+        
       }else{
         println("something wrong: \(activityType)")
       }
@@ -146,6 +142,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   }
   
   @IBAction func cancelButton(sender: AnyObject) {
+    self.performSegueWithIdentifier("tabBarController", sender: self)
   }
   
   // MARK: Methods
@@ -187,7 +184,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   */
   func keyboardWillShow(notification: NSNotification) {
     println("Show: got notification")
-    println(self.view.frame.origin.y)
     
     if bottomTextField.isFirstResponder(){
       
@@ -208,17 +204,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   func keyboardWillHide(notification: NSNotification) {
     println("Hide: got notification")
     
-    // TODO: Show bars.
-    println(self.view.frame.origin.y)
-    
     // That seems like proper way to get rid of view slide on rotation.
     view.frame.origin.y = 0.0
-    
-    // Old method view was sliding up on rotation.
-    //if bottomTextField.isFirstResponder(){
-    //  self.view.frame.origin.y += getKeyboardHeight(notification)
-    //  println(self.view.frame.origin.y)
-    //}
   }
   
   /**
@@ -235,6 +222,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   }
   
   // MARK: Image Picker Controller Delegates methods
+  
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
     println("imagePicker delegate")
     if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
@@ -242,13 +230,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
       // Dismiss UIImagePickerController when selection is made
       dismissViewControllerAnimated(true, completion: nil)
       
-      
       imageView.image = image
       println("imageView frame: \(imageView.frame.size)")
       println("contentView frame: \(contentView.frame.size)")
       
-      
-      // TODO: Check more articles on Autolayout with Scroll View. So far it's just not working at all.
+      // TODO: Check more articles on Autolayout with Scroll View. So far it's just not working right in landscape. Picture frame is cut.
       scrollView.contentSize = image.size
       println("scrollView contentSize: \(scrollView.contentSize)")
       println("scrollView frame: \(scrollView.frame.size)")
@@ -328,15 +314,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   Create memed image by capturing current view frame.
   */
   func generateMemedImage() -> UIImage {
+    // TODO: Make Hide bars separate function.
     // Hide navigation bar and toolbar
     navigationController?.setNavigationBarHidden(true, animated: false)
     toolBar.hidden = true
-    
-    // TODO: Added for test. Do not forget to remove in final version
-    var topText = topTextField.text
-    var bottomText = bottomTextField.text
-    println(topText)
-    println(bottomText)
     
     // Capture view frame
     UIGraphicsBeginImageContext(self.view.frame.size)
@@ -358,20 +339,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   func save(){
     var imageMemed = generateMemedImage()
     
-    var topText = topTextField.text
-    var bottomText = bottomTextField.text
-    
-    println(topTextField.text)
-    println(bottomTextField.text)
-    
     //create meme object
-    var meme = Meme(topText: topText, bottomText: bottomText, originalImage: imageView.image!, memedImage: imageMemed)
+    var meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text, originalImage: imageView.image!, memedImage: imageMemed)
     appDelegate.memes.append(meme)
-    
   }
   
   /**
-  Set state for action button
+  Set state for action button. Return true when image is loaded.
   
   :returns: Bool
   */
@@ -398,11 +372,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     toolBar.hidden = toolBar.hidden ? false : true
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  // MARK: Prepare for segue.
+  // TODO: Segue to Tab Bar Controller does show toolbar, but Nav bar buttons are not shown now.
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    segue.destinationViewController as! UITabBarController
   }
-  
   
 }
 

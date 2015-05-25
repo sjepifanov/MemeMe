@@ -6,14 +6,6 @@
 //  Copyright (c) 2015 Sergei. All rights reserved.
 //
 
-//
-//  MemeTableViewController.swift
-//  MemeMe
-//
-//  Created by Sergei on 21/05/15.
-//  Copyright (c) 2015 Sergei. All rights reserved.
-//
-
 import UIKit
 
 class MemeTableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
@@ -26,63 +18,50 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
   @IBOutlet var cancelButton: UIBarButtonItem!
 
   
-  
-  // TODO: Add button might be removed or replaced with select.
-  // Edit butoon will send meme to Image Editor instead.
-  // Need to think of logic since only one meme could be sent to editor.
-  // Or do not include edit/add at all replacing with select instead.
-  // Check if replacing button labdel won't break edit functionality!
-  
-  //@IBOutlet weak var addButton: UIBarButtonItem!
-  
-  //MARK: Declarations
+  // MARK: Declarations
   
   let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-  // Declare empty array of type Meme for copy of selected objects when deleting
+  // Declare empty array of type Meme to hold a copy of selected objects to delete
   var objectsToDelete = [Meme]()
   let cellIdentifier = "MemeTableViewCell"
+  
+  // MARK: Views
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    println("Table ViewDidLoad")
     self.tableView.allowsMultipleSelectionDuringEditing = true
-    tableView.reloadData()
-
-    // make our view consistent
-    self.updateButtonsToMatchTableState()
-    
-  }
-  
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    
-    // TODO: Read rubric again to check exact requirements. Logic below may require changes.
-  
-    tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 80
-    
-
     tableView.reloadData()
     
     // Switch to image Editor is there is no saved Memes
     if appDelegate.memes.count == 0{
-        // TODO: Remove if find unnessary
-        //performSegueWithIdentifier("imagePickerController", sender: self)
-
       let imagePickerController = self.storyboard!.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
       imagePickerController.hidesBottomBarWhenPushed = true
       navigationController!.pushViewController(imagePickerController, animated: true)
     }
     
     // make our view consistent
-    self.updateButtonsToMatchTableState()
-    
+    updateButtonsToMatchTableState()
   }
   
-  //@IBAction func addAction(sender: AnyObject) {
-  //}
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+        println("Table ViewWillAppear")
   
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 80
+    
+    tableView.reloadData()
+    
+    // make our view consistent
+    self.updateButtonsToMatchTableState()
+  }
 
+  
+  // MARK: Actions for Add, Edit, Delete and Cancel buttons
+  
   @IBAction func addAction(sender: AnyObject) {
     let imagePickerController = self.storyboard!.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
     imagePickerController.hidesBottomBarWhenPushed = true
@@ -137,18 +116,13 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
-    //let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell
     let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! MemeTableViewCell
     let meme = appDelegate.memes[indexPath.row]
     
     // Set the name and image
-    //cell.textLabel?.text = meme.topText
-    //cell.detailTextLabel?.text = meme.bottomText
     cell.topTextLabel?.text = meme.topText
     cell.bottomTextLabel?.text = meme.bottomText
-
-    //cell.imageView?.image = meme.originalImage
-    cell.cellImageView?.image = meme.originalImage
+    cell.cellImageView?.image = meme.memedImage
     
     return cell
   }
@@ -224,7 +198,6 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
       // Show the delete button.
       navigationItem.leftBarButtonItem = deleteButton
     }else{
-      // TODO: Check button functionality. Readd if necessary.
       // Not in editing mode.
       navigationItem.leftBarButtonItem = addButton
       
@@ -246,12 +219,5 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
       deleteButton.title = "Delete All"
     }
   }
-
-    // TODO: problems with nav buttons when pushing controllers programatically Check if segue will work better.
-/*
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    segue.destinationViewController as! MemeEditorViewController
-  }
-*/
   
 }
