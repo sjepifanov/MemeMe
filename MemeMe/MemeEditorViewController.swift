@@ -246,7 +246,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
       scrollView.contentSize = image.size
       println("scrollView contentSize: \(scrollView.contentSize)")
       println("scrollView frame: \(scrollView.frame.size)")
-      
       let scrollViewFrame = scrollView.frame
       let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
       let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height

@@ -232,7 +232,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="w9v-xP-Bgu">
+                    <navigationItem key="navigationItem" title="Meme Editor" id="w9v-xP-Bgu">
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="bJQ-kM-rLo">
                             <connections>
                                 <action selector="actionButton:" destination="vXZ-lx-hvc" id="tmE-Zt-kWm"/>
@@ -381,6 +381,8 @@
                                 </view>
                                 <constraints>
                                     <constraint firstItem="tWk-wu-Dlk" firstAttribute="top" secondItem="XQm-E2-yAP" secondAttribute="topMargin" id="6gx-Tk-zY7"/>
+                                    <constraint firstAttribute="centerY" secondItem="tWk-wu-Dlk" secondAttribute="centerY" id="Os5-64-jCQ"/>
+                                    <constraint firstAttribute="centerX" secondItem="tWk-wu-Dlk" secondAttribute="centerX" id="dyZ-hY-Yb3"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="tWk-wu-Dlk" secondAttribute="bottom" id="kIP-tu-Lcc"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="tWk-wu-Dlk" secondAttribute="trailing" id="mtY-je-IMW"/>
                                     <constraint firstItem="tWk-wu-Dlk" firstAttribute="leading" secondItem="XQm-E2-yAP" secondAttribute="leadingMargin" id="n9b-y4-4Db"/>
@@ -395,7 +397,7 @@
                             <outlet property="delegate" destination="cAN-HR-Qlr" id="Lio-N5-UW3"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="qMJ-rd-jUv"/>
+                    <navigationItem key="navigationItem" title="Sent Memes" id="qMJ-rd-jUv"/>
                     <connections>
                         <outlet property="addButton" destination="ipZ-LY-gKs" id="cEZ-hr-u4d"/>
                         <outlet property="cancelButton" destination="0J9-CB-ps3" id="HYR-fA-XmP"/>
@@ -519,7 +521,7 @@
                             <constraint firstItem="bg2-Zd-Zzr" firstAttribute="leading" secondItem="xeX-mG-8Uj" secondAttribute="leading" id="i98-cS-6FV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="e8u-m1-AOn">
+                    <navigationItem key="navigationItem" title="Meme" id="e8u-m1-AOn">
                         <barButtonItem key="rightBarButtonItem" title="Delete" id="gWP-Gv-Jw4">
                             <connections>
                                 <action selector="deleteAction:" destination="j9G-Rc-D8d" id="Ls2-Dj-eZo"/>
