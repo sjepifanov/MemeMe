@@ -8,7 +8,7 @@
         <!--Navigation Controller-->
         <scene sceneID="bQe-rf-zZs">
             <objects>
-                <navigationController extendedLayoutIncludesOpaqueBars="YES" id="sre-9c-C3g" sceneMemberID="viewController">
+                <navigationController extendedLayoutIncludesOpaqueBars="YES" toolbarHidden="NO" id="sre-9c-C3g" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4KD-f7-d8K">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -24,21 +24,21 @@
         <!--Meme Editor-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="imagePickerController" title="Meme Editor" id="vXZ-lx-hvc" customClass="MemeEditorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="imagePickerController" title="Meme Editor" hidesBottomBarWhenPushed="YES" id="vXZ-lx-hvc" customClass="MemeEditorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9C-SQ-iwA" userLabel="Alignment View">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mvr-hB-FnT">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NU3-Kp-Lyr" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -117,7 +117,7 @@
                                 </variation>
                             </scrollView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJH-b1-Hib">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="512" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="DGa-M6-DsM"/>
                                     <barButtonItem title="Album" id="v7C-qz-57P">
@@ -140,7 +140,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7We-9s-42J" userLabel="Bottom Text Field">
-                                <rect key="frame" x="16" y="496" width="568" height="30"/>
+                                <rect key="frame" x="16" y="452" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -255,7 +255,6 @@
                         <outlet property="scrollView" destination="mvr-hB-FnT" id="4HD-TF-dSs"/>
                         <outlet property="toolBar" destination="bJH-b1-Hib" id="52U-ot-mev"/>
                         <outlet property="topTextField" destination="0Dh-ja-RGO" id="b74-Ui-YqA"/>
-                        <segue destination="Q7Y-E6-5qz" kind="show" identifier="tabBarController" id="QqW-KS-7qg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -490,14 +489,14 @@
                         <viewControllerLayoutGuide type="bottom" id="vmO-PH-grF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xeX-mG-8Uj">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qnG-M9-Nlh">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bg2-Zd-Zzr">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="512" width="600" height="44"/>
                                 <items>
                                     <barButtonItem title="Open in Meme Editor" id="VvY-Kd-hT7">
                                         <connections>
@@ -530,7 +529,6 @@
                     <connections>
                         <outlet property="deleteButton" destination="gWP-Gv-Jw4" id="lVu-5y-NhR"/>
                         <outlet property="memeDetailImage" destination="qnG-M9-Nlh" id="QAo-7R-4Lm"/>
-                        <segue destination="sre-9c-C3g" kind="show" identifier="imagePickerController" id="bOZ-ye-l9c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R8Y-7f-tKT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -540,7 +538,7 @@
         <!--Navigation Controller-->
         <scene sceneID="GVx-7G-Igq">
             <objects>
-                <navigationController id="eKJ-7F-kQ7" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="EditorNavController" toolbarHidden="NO" id="eKJ-7F-kQ7" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mG2-2O-mM1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

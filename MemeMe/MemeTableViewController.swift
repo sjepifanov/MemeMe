@@ -38,6 +38,7 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
     if appDelegate.memes.count == 0{
       let storyboard = UIStoryboard (name: "Main", bundle: nil)
       let imagePickerController = storyboard.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
+      self.hidesBottomBarWhenPushed = false
       imagePickerController.hidesBottomBarWhenPushed = true
       if let navigationcontroller = self.navigationController {
         navigationcontroller.pushViewController(imagePickerController, animated: true)
@@ -68,6 +69,7 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
   @IBAction func addAction(sender: AnyObject) {
     let storyboard = UIStoryboard (name: "Main", bundle: nil)
     let imagePickerController = storyboard.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
+    self.hidesBottomBarWhenPushed = false
     imagePickerController.hidesBottomBarWhenPushed = true
     if let navigationcontroller = self.navigationController {
      navigationcontroller.pushViewController(imagePickerController, animated: true)
@@ -146,6 +148,7 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
       let storyboard = UIStoryboard (name: "Main", bundle: nil)
       let detailController = storyboard.instantiateViewControllerWithIdentifier("MemeDetailViewController")! as! MemeDetailViewController
       detailController.meme = appDelegate.memes[indexPath.row]
+      self.hidesBottomBarWhenPushed = false
       detailController.hidesBottomBarWhenPushed = true
       if let navigationcontroller = self.navigationController {
        navigationcontroller.pushViewController(detailController, animated: true)
@@ -181,7 +184,7 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
           appDelegate.memes.removeAtIndex(index)
         }
       }
-      
+      tableView.deleteRowsAtIndexPaths(selectedRows, withRowAnimation: .Automatic)
     }else{
       
       // Delete everything, delete the objects from data model.

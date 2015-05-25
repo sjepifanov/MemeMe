@@ -55,6 +55,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
   @IBAction func addAction(sender: AnyObject) {
     let storyboard = UIStoryboard (name: "Main", bundle: nil)
     let imagePickerController = storyboard.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
+    self.hidesBottomBarWhenPushed = false
     imagePickerController.hidesBottomBarWhenPushed = true
     if let navigationcontroller = self.navigationController {
       navigationcontroller.pushViewController(imagePickerController, animated: true)
@@ -129,6 +130,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
       let storyboard = UIStoryboard (name: "Main", bundle: nil)
       let detailController = storyboard.instantiateViewControllerWithIdentifier("MemeDetailViewController")! as! MemeDetailViewController
       detailController.meme = appDelegate.memes[indexPath.row]
+      self.hidesBottomBarWhenPushed = false
       detailController.hidesBottomBarWhenPushed = true
       if let navigationcontroller = self.navigationController {
         navigationcontroller.pushViewController(detailController, animated: true)
