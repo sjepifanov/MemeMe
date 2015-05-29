@@ -40,79 +40,39 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mvr-hB-FnT">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NU3-Kp-Lyr" userLabel="Content View">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="600" translatesAutoresizingMaskIntoConstraints="NO" id="hTN-Dt-sea">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hTN-Dt-sea">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                                <variation key="heightClass=compact" ambiguous="YES" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
-                                                </variation>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="hTN-Dt-sea" firstAttribute="top" secondItem="NU3-Kp-Lyr" secondAttribute="top" id="V3X-mH-clU"/>
-                                            <constraint firstItem="hTN-Dt-sea" firstAttribute="top" secondItem="NU3-Kp-Lyr" secondAttribute="top" id="YsX-ap-EQM"/>
-                                            <constraint firstAttribute="trailing" secondItem="hTN-Dt-sea" secondAttribute="trailing" id="dOG-nB-Nss"/>
-                                            <constraint firstAttribute="trailing" secondItem="hTN-Dt-sea" secondAttribute="trailing" id="dgV-I3-NM3"/>
-                                            <constraint firstItem="hTN-Dt-sea" firstAttribute="leading" secondItem="NU3-Kp-Lyr" secondAttribute="leading" id="qZp-Vr-Mbw"/>
-                                            <constraint firstItem="hTN-Dt-sea" firstAttribute="leading" secondItem="NU3-Kp-Lyr" secondAttribute="leading" id="tqo-fa-HgG"/>
-                                            <constraint firstAttribute="bottom" secondItem="hTN-Dt-sea" secondAttribute="bottom" id="yhv-Jn-g54"/>
-                                            <constraint firstAttribute="bottom" secondItem="hTN-Dt-sea" secondAttribute="bottom" id="zFC-5Z-HPf"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="V3X-mH-clU"/>
-                                                <exclude reference="dOG-nB-Nss"/>
-                                                <exclude reference="qZp-Vr-Mbw"/>
-                                                <exclude reference="yhv-Jn-g54"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=compact" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
-                                            <mask key="constraints">
-                                                <include reference="V3X-mH-clU"/>
-                                                <exclude reference="YsX-ap-EQM"/>
-                                                <include reference="dOG-nB-Nss"/>
-                                                <exclude reference="dgV-I3-NM3"/>
-                                                <include reference="qZp-Vr-Mbw"/>
-                                                <exclude reference="tqo-fa-HgG"/>
-                                                <include reference="yhv-Jn-g54"/>
-                                                <exclude reference="zFC-5Z-HPf"/>
-                                            </mask>
-                                        </variation>
-                                    </view>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="NU3-Kp-Lyr" secondAttribute="trailing" id="97X-L7-UxC"/>
-                                    <constraint firstAttribute="bottom" secondItem="NU3-Kp-Lyr" secondAttribute="bottom" id="Lm1-br-6vl"/>
-                                    <constraint firstAttribute="trailing" secondItem="NU3-Kp-Lyr" secondAttribute="trailing" id="P9M-0T-6tT"/>
-                                    <constraint firstItem="NU3-Kp-Lyr" firstAttribute="top" secondItem="mvr-hB-FnT" secondAttribute="top" id="Pwo-Z3-xUp"/>
-                                    <constraint firstAttribute="bottom" secondItem="NU3-Kp-Lyr" secondAttribute="bottom" id="VOm-8I-gp6"/>
-                                    <constraint firstItem="NU3-Kp-Lyr" firstAttribute="top" secondItem="mvr-hB-FnT" secondAttribute="top" id="lI4-ls-AzU"/>
-                                    <constraint firstItem="NU3-Kp-Lyr" firstAttribute="leading" secondItem="mvr-hB-FnT" secondAttribute="leading" id="vkD-bX-PQn"/>
-                                    <constraint firstItem="NU3-Kp-Lyr" firstAttribute="leading" secondItem="mvr-hB-FnT" secondAttribute="leading" id="vxz-OH-sIW"/>
+                                    <constraint firstItem="hTN-Dt-sea" firstAttribute="leading" secondItem="mvr-hB-FnT" secondAttribute="leading" id="1RL-my-QXg"/>
+                                    <constraint firstAttribute="trailing" secondItem="hTN-Dt-sea" secondAttribute="trailing" id="MNe-n5-bMC"/>
+                                    <constraint firstItem="hTN-Dt-sea" firstAttribute="top" secondItem="mvr-hB-FnT" secondAttribute="top" id="NSw-LL-LtC"/>
+                                    <constraint firstItem="hTN-Dt-sea" firstAttribute="leading" secondItem="mvr-hB-FnT" secondAttribute="leading" id="Vpt-wt-yTG"/>
+                                    <constraint firstItem="hTN-Dt-sea" firstAttribute="top" secondItem="mvr-hB-FnT" secondAttribute="top" id="bmX-7L-dHd"/>
+                                    <constraint firstAttribute="bottom" secondItem="hTN-Dt-sea" secondAttribute="bottom" id="dL7-IF-V7z"/>
+                                    <constraint firstAttribute="trailing" secondItem="hTN-Dt-sea" secondAttribute="trailing" id="ehx-3F-nFo"/>
+                                    <constraint firstAttribute="bottom" secondItem="hTN-Dt-sea" secondAttribute="bottom" id="oyV-XZ-TM8"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="97X-L7-UxC"/>
-                                        <exclude reference="Lm1-br-6vl"/>
-                                        <exclude reference="Pwo-Z3-xUp"/>
-                                        <exclude reference="vkD-bX-PQn"/>
+                                        <exclude reference="1RL-my-QXg"/>
+                                        <exclude reference="MNe-n5-bMC"/>
+                                        <exclude reference="NSw-LL-LtC"/>
+                                        <exclude reference="oyV-XZ-TM8"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=compact" ambiguous="YES">
+                                <variation key="heightClass=compact" misplaced="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
                                     <mask key="constraints">
-                                        <include reference="97X-L7-UxC"/>
-                                        <include reference="Lm1-br-6vl"/>
-                                        <exclude reference="P9M-0T-6tT"/>
-                                        <include reference="Pwo-Z3-xUp"/>
-                                        <exclude reference="VOm-8I-gp6"/>
-                                        <exclude reference="lI4-ls-AzU"/>
-                                        <include reference="vkD-bX-PQn"/>
-                                        <exclude reference="vxz-OH-sIW"/>
+                                        <include reference="1RL-my-QXg"/>
+                                        <include reference="MNe-n5-bMC"/>
+                                        <include reference="NSw-LL-LtC"/>
+                                        <exclude reference="Vpt-wt-yTG"/>
+                                        <exclude reference="bmX-7L-dHd"/>
+                                        <exclude reference="dL7-IF-V7z"/>
+                                        <exclude reference="ehx-3F-nFo"/>
+                                        <include reference="oyV-XZ-TM8"/>
                                     </mask>
                                 </variation>
                             </scrollView>
@@ -250,7 +210,6 @@
                         <outlet property="bottomTextField" destination="7We-9s-42J" id="cBi-zg-i60"/>
                         <outlet property="cameraButton" destination="5d6-eU-AxP" id="AIT-n6-O0v"/>
                         <outlet property="cancelButton" destination="aQL-mB-htI" id="uQG-nY-n5s"/>
-                        <outlet property="contentView" destination="NU3-Kp-Lyr" id="Goz-Ye-S1U"/>
                         <outlet property="imageView" destination="hTN-Dt-sea" id="8rO-f4-yeG"/>
                         <outlet property="scrollView" destination="mvr-hB-FnT" id="4HD-TF-dSs"/>
                         <outlet property="toolBar" destination="bJH-b1-Hib" id="52U-ot-mev"/>
@@ -268,7 +227,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="pyg-yJ-L27">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemeTableViewCell" rowHeight="80" id="p8U-nc-aYd" customClass="MemeTableViewCell" customModule="MemeMe" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -285,13 +244,13 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVS-U4-0fi">
                                             <rect key="frame" x="116" y="40" width="476" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhf-q3-C2C">
                                             <rect key="frame" x="116" y="8" width="476" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
