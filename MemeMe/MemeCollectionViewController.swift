@@ -18,15 +18,16 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
   @IBOutlet var editButton: UIBarButtonItem!
   @IBOutlet var deleteButton: UIBarButtonItem!
   @IBOutlet var cancelButton: UIBarButtonItem!
-  
+  @IBOutlet var memeCollectionView: UICollectionView!
+
   
   // MARK: Declarations
   
   var selecting: Bool = false {
     didSet {
-      collectionView?.allowsMultipleSelection = selecting
+      memeCollectionView.allowsMultipleSelection = selecting
       // Clear previous selection if any
-      collectionView?.selectItemAtIndexPath(nil, animated: true, scrollPosition: .None)
+      memeCollectionView.selectItemAtIndexPath(nil, animated: true, scrollPosition: .None)
     }
   }
   var objectsToDelete = [Meme]()
@@ -35,14 +36,16 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
   //MARK: View
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    println("Collection ViewWillAppear")
-    self.collectionView?.reloadData()
+    
+    addButton.title = "New"
+
+    memeCollectionView.reloadData()
     updateButtonsToMatchTableState()
   }
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    println("Collection ViewWillDisappear")
+
     if selecting {
       self.selecting = !selecting
     }
@@ -95,7 +98,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
   
   @IBAction func cancelAction(sender: AnyObject) {
     self.selecting = !selecting
-    collectionView?.reloadSections(NSIndexSet(index: 0))
+    memeCollectionView.reloadSections(NSIndexSet(index: 0))
     updateButtonsToMatchTableState()
   }
 
@@ -121,11 +124,11 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
   
   override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
     if selecting {
-      let cell = collectionView.cellForItemAtIndexPath(indexPath)
+      if let cell = collectionView.cellForItemAtIndexPath(indexPath){
       //Change cell alpha value
-      cell?.alpha = 0.5
+      cell.alpha = 0.5
+      }
       updateButtonsToMatchTableState()
-      
     }else{
       let storyboard = UIStoryboard (name: "Main", bundle: nil)
       let detailController = storyboard.instantiateViewControllerWithIdentifier("MemeDetailViewController")! as! MemeDetailViewController

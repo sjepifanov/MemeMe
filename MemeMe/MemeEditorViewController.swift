@@ -75,7 +75,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     imageView.userInteractionEnabled = true
     
     // Initialize Gesture Recognizer
-    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideBars:")
+    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideBarsOnTouch:")
     tapGestureRecognizer.numberOfTapsRequired = 1
     
     // Add Gesture Recognizer to image view
@@ -93,6 +93,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
       setMinimumZoomForCurrentFrame(meme.originalImage.size)
       setMaxZoomToPresentPicture(meme.originalImage.size)
       centerScrollViewContents()
+      meme = nil
     }
     
     // Enable action button when picture is loaded.
@@ -184,7 +185,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   
   // MARK: Selectors for notifications
   
-  // TODO: Text is covered by Navigation bar in Landscape. May hide toolbar to allow more space.
   /**
   Slide view frame up by height of on screen keyboard frame.
   
@@ -241,11 +241,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
       // Set zoom scale so image will appear fullscreen.
       setMaxZoomToPresentPicture(image.size)
       
-      // Move Scroll view to center point.
-      scrollView.setContentOffset(CGPoint(x: scrollView.frame.size.width / 2, y: scrollView.frame.size.height / 2) , animated: true)
+      // Move Scroll view to horizontal center point.
+      scrollView.setContentOffset(CGPoint(x: imageView.frame.size.width / 2, y: 0) , animated: true)
       
       // Center content
-      centerScrollViewContents()
+      scrollViewDidZoom(scrollView)
     }
   }
   
@@ -269,6 +269,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     let scaleWidth = scrollSize.width / imageSize.width
     let scaleHeight = scrollSize.height / imageSize.height
     let minScale = min(scaleWidth, scaleHeight)
+    
     scrollView.minimumZoomScale = minScale
   }
   
@@ -311,6 +312,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     self.scrollView.contentInset = UIEdgeInsetsMake(y, x, y, x);
   }
   
+  func scrollViewDidScroll(scrollView: UIScrollView) {
+  }
+  
+  func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+  }
+  
   /**
   Center scrollView content when it's smaller than screen size
   */
@@ -335,10 +342,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   Create memed image by capturing current view frame.
   */
   func generateMemedImage() -> UIImage {
-    // TODO: Make Hide bars separate function.
+
     // Hide navigation bar and toolbar
-    navigationController?.setNavigationBarHidden(true, animated: false)
-    toolBar.hidden = true
+    hideBars()
     
     // Capture view frame
     UIGraphicsBeginImageContext(self.view.frame.size)
@@ -346,9 +352,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     let imageMemed: UIImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     
-    // Unhide navigation bar and toolbar
-    navigationController?.setNavigationBarHidden(false, animated: false)
-    toolBar.hidden = false
+    // Unhide navigation bar and toolbar.
+    hideBars()
     
     return imageMemed
   }
@@ -381,16 +386,21 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   
   // MARK: Hide bars for Gesture Recognizer
   
+
+  func hideBarsOnTouch(recognizer: UITapGestureRecognizer) {
+      hideBars()
+  }
+  
   /**
   Hide Navigation Bar and ToolBar
   
   :param: recognizer UITapGestureREcognizer
   */
-  
-  // TODO: Check if I need recognizer here? I may use this method in generating meme method if I do not require recognizer as patrameter.
-  func hideBars(recognizer: UITapGestureRecognizer) {
-    navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: false) //or animated: false
+  func hideBars() {
+    if let navigationController = self.navigationController {
+      navigationController.setNavigationBarHidden(navigationController.navigationBarHidden == false, animated: false) //or animated: false
     toolBar.hidden = toolBar.hidden ? false : true
+    }
   }
   
 }

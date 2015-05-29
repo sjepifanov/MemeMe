@@ -8,7 +8,7 @@
         <!--Navigation Controller-->
         <scene sceneID="bQe-rf-zZs">
             <objects>
-                <navigationController extendedLayoutIncludesOpaqueBars="YES" toolbarHidden="NO" id="sre-9c-C3g" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="imagePickerNavigationController" extendedLayoutIncludesOpaqueBars="YES" toolbarHidden="NO" id="sre-9c-C3g" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4KD-f7-d8K">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -37,10 +37,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mvr-hB-FnT">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvr-hB-FnT">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="600" translatesAutoresizingMaskIntoConstraints="NO" id="hTN-Dt-sea">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="600" translatesAutoresizingMaskIntoConstraints="NO" id="hTN-Dt-sea">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                     </imageView>
                                 </subviews>
@@ -95,12 +95,12 @@
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Dh-ja-RGO" userLabel="Top Text Field">
-                                <rect key="frame" x="16" y="96" width="568" height="30"/>
+                                <rect key="frame" x="16" y="86" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7We-9s-42J" userLabel="Bottom Text Field">
-                                <rect key="frame" x="16" y="452" width="568" height="30"/>
+                                <rect key="frame" x="16" y="462" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -111,7 +111,7 @@
                             <constraint firstAttribute="trailing" secondItem="w9C-SQ-iwA" secondAttribute="trailing" id="5Xv-iv-Vk1"/>
                             <constraint firstItem="mvr-hB-FnT" firstAttribute="top" secondItem="w9C-SQ-iwA" secondAttribute="top" id="AP7-ac-5pW"/>
                             <constraint firstItem="mvr-hB-FnT" firstAttribute="bottom" secondItem="w9C-SQ-iwA" secondAttribute="bottom" id="EM1-6q-RlI"/>
-                            <constraint firstItem="w9C-SQ-iwA" firstAttribute="top" secondItem="0Dh-ja-RGO" secondAttribute="top" constant="-96" id="Eao-Tj-opt"/>
+                            <constraint firstItem="w9C-SQ-iwA" firstAttribute="top" secondItem="0Dh-ja-RGO" secondAttribute="top" constant="-86" id="Eao-Tj-opt"/>
                             <constraint firstItem="7We-9s-42J" firstAttribute="trailing" secondItem="w9C-SQ-iwA" secondAttribute="trailing" constant="-16" id="Exx-Zy-byg"/>
                             <constraint firstItem="w9C-SQ-iwA" firstAttribute="trailing" secondItem="0Dh-ja-RGO" secondAttribute="trailing" constant="16" id="Fic-E3-ruc"/>
                             <constraint firstItem="mvr-hB-FnT" firstAttribute="trailing" secondItem="w9C-SQ-iwA" secondAttribute="trailing" id="Kpb-gt-ixV"/>
@@ -122,7 +122,7 @@
                             <constraint firstItem="mvr-hB-FnT" firstAttribute="bottom" secondItem="w9C-SQ-iwA" secondAttribute="bottom" id="QxC-EJ-ZSO"/>
                             <constraint firstItem="mvr-hB-FnT" firstAttribute="leading" secondItem="w9C-SQ-iwA" secondAttribute="leading" id="TVd-W3-ncr"/>
                             <constraint firstItem="mvr-hB-FnT" firstAttribute="trailing" secondItem="w9C-SQ-iwA" secondAttribute="trailing" id="TwH-CS-BZI"/>
-                            <constraint firstItem="7We-9s-42J" firstAttribute="bottom" secondItem="w9C-SQ-iwA" secondAttribute="bottom" constant="-74" id="UHp-zu-N8y"/>
+                            <constraint firstItem="7We-9s-42J" firstAttribute="bottom" secondItem="w9C-SQ-iwA" secondAttribute="bottom" constant="-64" id="UHp-zu-N8y"/>
                             <constraint firstItem="7We-9s-42J" firstAttribute="leading" secondItem="w9C-SQ-iwA" secondAttribute="leading" constant="16" id="WUM-xV-cla"/>
                             <constraint firstItem="7We-9s-42J" firstAttribute="leading" secondItem="w9C-SQ-iwA" secondAttribute="leading" constant="16" id="YCI-Ou-DVm"/>
                             <constraint firstItem="7We-9s-42J" firstAttribute="trailing" secondItem="w9C-SQ-iwA" secondAttribute="trailing" constant="-16" id="YVi-S1-shg"/>
@@ -224,10 +224,11 @@
         <scene sceneID="TrZ-Vp-o6i">
             <objects>
                 <tableViewController storyboardIdentifier="MemeTableViewController" title="Sent Memes" id="tKx-tR-qcB" customClass="MemeTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="pyg-yJ-L27">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="pyg-yJ-L27">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemeTableViewCell" rowHeight="80" id="p8U-nc-aYd" customClass="MemeTableViewCell" customModule="MemeMe" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -242,7 +243,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVS-U4-0fi">
-                                            <rect key="frame" x="116" y="40" width="476" height="21"/>
+                                            <rect key="frame" x="116" y="42" width="476" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -254,6 +255,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.93124605429292928" green="0.93124605429292928" blue="0.93124605429292928" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="C3r-Ii-g6a" firstAttribute="top" secondItem="Vbv-k0-wqw" secondAttribute="top" constant="8" id="3U5-Hs-xPk"/>
                                         <constraint firstItem="yhf-q3-C2C" firstAttribute="leading" secondItem="C3r-Ii-g6a" secondAttribute="trailing" constant="8" id="7EG-58-1zw"/>
@@ -261,7 +263,7 @@
                                         <constraint firstItem="yhf-q3-C2C" firstAttribute="trailing" secondItem="Vbv-k0-wqw" secondAttribute="trailingMargin" id="DYG-ao-mzb"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="yhf-q3-C2C" secondAttribute="bottom" constant="42" id="F9i-VQ-FOD"/>
                                         <constraint firstItem="AVS-U4-0fi" firstAttribute="leading" secondItem="C3r-Ii-g6a" secondAttribute="trailing" constant="8" id="R5q-Ah-ahf"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="AVS-U4-0fi" secondAttribute="bottom" constant="10" id="aeU-qv-lgc"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="AVS-U4-0fi" secondAttribute="bottom" constant="8" id="aeU-qv-lgc"/>
                                         <constraint firstItem="C3r-Ii-g6a" firstAttribute="leading" secondItem="Vbv-k0-wqw" secondAttribute="leading" constant="8" id="ndh-C6-bdI"/>
                                         <constraint firstItem="AVS-U4-0fi" firstAttribute="trailing" secondItem="Vbv-k0-wqw" secondAttribute="trailingMargin" id="xET-R6-6BH"/>
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="C3r-Ii-g6a" secondAttribute="bottom" priority="750" constant="8" id="y4S-Q2-lQc"/>
@@ -362,6 +364,7 @@
                         <outlet property="cancelButton" destination="0J9-CB-ps3" id="HYR-fA-XmP"/>
                         <outlet property="deleteButton" destination="ZEq-bc-Tyi" id="OTh-Ft-IED"/>
                         <outlet property="editButton" destination="BPv-X4-RRd" id="Hpg-Pk-6Wi"/>
+                        <outlet property="memeCollectionView" destination="w9Y-Ci-AJ8" id="cGe-hV-q8m"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w9b-GF-vKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -455,6 +458,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qnG-M9-Nlh">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bg2-Zd-Zzr">
                                 <rect key="frame" x="0.0" y="512" width="600" height="44"/>

@@ -20,6 +20,14 @@ func == (lhs: Meme, rhs: Meme) -> Bool {
   }
 }
 
+/**
+Meme Data Structure
+
+:param: topText: (String)
+:param: bottomText: (String)
+:param: originalImage: (UIImage)
+:param: memedImage: (UIImage)
+*/
 struct Meme: Equatable {
   let topText: String
   let bottomText: String

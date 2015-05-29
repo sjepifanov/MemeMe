@@ -30,7 +30,6 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    println("Table ViewDidLoad")
     self.tableView.allowsMultipleSelectionDuringEditing = true
     tableView.reloadData()
     
@@ -51,15 +50,14 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
-        println("Table ViewWillAppear")
   
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 80
     
     tableView.reloadData()
     
-    // make our view consistent
+    addButton.title = "New"
+    
     self.updateButtonsToMatchTableState()
   }
 
@@ -105,14 +103,12 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
   @IBAction func editAction(sender: AnyObject) {
     tableView.setEditing(true, animated: true)
     
-    // make our view consistent
     updateButtonsToMatchTableState()
   }
   
   @IBAction func cancelAction(sender: AnyObject) {
     tableView.setEditing(false, animated: true)
     
-    // make our view consistent
     updateButtonsToMatchTableState()
   }
   
