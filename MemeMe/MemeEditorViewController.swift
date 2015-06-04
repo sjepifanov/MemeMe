@@ -134,26 +134,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     actionController.completionWithItemsHandler = {action, result, object, error in
       if result{
         self.save()
-        
-        var storyboard = UIStoryboard (name: "Main", bundle: nil)
-        let tableViewController = storyboard.instantiateViewControllerWithIdentifier("MemeTableViewController") as! MemeTableViewController
-        self.hidesBottomBarWhenPushed = false
-        tableViewController.hidesBottomBarWhenPushed = false
-        if let navigationcontroller = self.navigationController {
-          navigationcontroller.pushViewController(tableViewController, animated: true)
-        }
+        self.dismissViewControllerAnimated(true, completion: nil)
       }
     }
   }
   
   @IBAction func cancelButton(sender: AnyObject) {
-    var storyboard = UIStoryboard (name: "Main", bundle: nil)
-    let tableViewController = storyboard.instantiateViewControllerWithIdentifier("MemeTableViewController") as! MemeTableViewController
-    self.hidesBottomBarWhenPushed = false
-    tableViewController.hidesBottomBarWhenPushed = false
-    if let navigationcontroller = self.navigationController {
-      navigationcontroller.pushViewController(tableViewController, animated: true)
-    }
+    self.dismissViewControllerAnimated(true, completion: nil)
   }
   
   // MARK: Methods

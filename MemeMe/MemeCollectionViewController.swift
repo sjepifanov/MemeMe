@@ -38,7 +38,6 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
     super.viewWillAppear(animated)
     
     addButton.title = "New"
-
     memeCollectionView.reloadData()
     updateButtonsToMatchTableState()
   }
@@ -56,13 +55,11 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
   // MARK: Add, Delete, Edit, Cancel Actions
   
   @IBAction func addAction(sender: AnyObject) {
+    
     let storyboard = UIStoryboard (name: "Main", bundle: nil)
     let imagePickerController = storyboard.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
-    self.hidesBottomBarWhenPushed = false
-    imagePickerController.hidesBottomBarWhenPushed = true
-    if let navigationcontroller = self.navigationController {
-      navigationcontroller.pushViewController(imagePickerController, animated: true)
-    }
+    let navController = UINavigationController(rootViewController: imagePickerController)
+    self.presentViewController(navController, animated: true, completion: nil)
   }
   
   @IBAction func editAction(sender: AnyObject) {
@@ -135,9 +132,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
       detailController.meme = appDelegate.memes[indexPath.row]
       self.hidesBottomBarWhenPushed = false
       detailController.hidesBottomBarWhenPushed = true
-      if let navigationcontroller = self.navigationController {
-        navigationcontroller.pushViewController(detailController, animated: true)
-      }
+      self.showViewController(detailController, sender: self)
     }
   }
 

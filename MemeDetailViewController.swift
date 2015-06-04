@@ -33,12 +33,8 @@ class MemeDetailViewController: UIViewController {
   @IBAction func openInImageEditor(sender: AnyObject) {
     let storyboard = UIStoryboard (name: "Main", bundle: nil)
     let imagePickerController = storyboard.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
-    self.hidesBottomBarWhenPushed = false
-    imagePickerController.hidesBottomBarWhenPushed = true
     imagePickerController.meme = meme
-    if let navigationcontroller = self.navigationController {
-      navigationcontroller.pushViewController(imagePickerController, animated: true)
-    }
+    let navController = UINavigationController(rootViewController: imagePickerController)
+    self.presentViewController(navController, animated: true, completion: nil)
   }
-  
 }

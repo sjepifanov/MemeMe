@@ -447,7 +447,7 @@
         <!--Meme Detail-->
         <scene sceneID="DqJ-JW-aLw">
             <objects>
-                <viewController storyboardIdentifier="MemeDetailViewController" title="Meme Detail" id="j9G-Rc-D8d" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeDetailViewController" title="Meme Detail" hidesBottomBarWhenPushed="YES" id="j9G-Rc-D8d" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Pi-je-Ehu"/>
                         <viewControllerLayoutGuide type="bottom" id="vmO-PH-grF"/>
@@ -477,10 +477,10 @@
                             <constraint firstItem="qnG-M9-Nlh" firstAttribute="top" secondItem="4Pi-je-Ehu" secondAttribute="bottom" id="9dS-aV-unc"/>
                             <constraint firstItem="vmO-PH-grF" firstAttribute="top" secondItem="bg2-Zd-Zzr" secondAttribute="bottom" id="CK6-dS-HDr"/>
                             <constraint firstAttribute="trailing" secondItem="bg2-Zd-Zzr" secondAttribute="trailing" id="DKw-sg-S8N"/>
-                            <constraint firstItem="qnG-M9-Nlh" firstAttribute="width" relation="greaterThanOrEqual" secondItem="xeX-mG-8Uj" secondAttribute="width" priority="750" id="PFj-Hy-TFQ"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" secondItem="qnG-M9-Nlh" secondAttribute="width" priority="750" id="PFj-Hy-TFQ"/>
                             <constraint firstItem="qnG-M9-Nlh" firstAttribute="leading" secondItem="xeX-mG-8Uj" secondAttribute="leading" id="PGV-mQ-pCU"/>
                             <constraint firstAttribute="trailing" secondItem="qnG-M9-Nlh" secondAttribute="trailing" id="R3A-V9-H9o"/>
-                            <constraint firstItem="qnG-M9-Nlh" firstAttribute="height" relation="greaterThanOrEqual" secondItem="xeX-mG-8Uj" secondAttribute="height" priority="750" id="cXc-bU-Ch6"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" secondItem="qnG-M9-Nlh" secondAttribute="height" priority="750" id="cXc-bU-Ch6"/>
                             <constraint firstItem="bg2-Zd-Zzr" firstAttribute="leading" secondItem="xeX-mG-8Uj" secondAttribute="leading" id="i98-cS-6FV"/>
                         </constraints>
                     </view>
