@@ -78,8 +78,8 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
     var alertTitle = "Remove memes"
     var actionTitle = "Are you sure you want to remove these items?"
     
-    if let indexPaths = collectionView?.indexPathsForSelectedItems() {
-      if indexPaths.count == 1 {
+    if let selectedRows = memeCollectionView.indexPathsForSelectedItems() as? [NSIndexPath] {
+      if selectedRows.count == 1 {
         alertTitle = "Remove meme"
         actionTitle = "Are you sure you want to remove this item?"
       }
@@ -110,7 +110,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
   override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as! MemeCollectionViewCell
     let meme = appDelegate.memes[indexPath.row]
-    cell.memeCellImage?.image = meme.memedImage
+    cell.memeCellImage.image = meme.memedImage
     
     // Check if cell is actually selected and set cell alpha value accordingly
     if cell.selected {
@@ -146,7 +146,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
   func deleteSelection() {
     // Get selected items paths from collection View
     // Unwrapping here is not really necessary as .indexPathsForSelectedItems() returns empty array if no rows are selected and not nil.
-    if let selectedRows = collectionView?.indexPathsForSelectedItems() as? [NSIndexPath]{
+    if let selectedRows = memeCollectionView.indexPathsForSelectedItems() as? [NSIndexPath]{
       // Check if rows are selected
       if !selectedRows.isEmpty {
         // Create temporary array of selected items
@@ -159,7 +159,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
             appDelegate.memes.removeAtIndex(index)
           }
         }
-        collectionView?.deleteItemsAtIndexPaths(selectedRows)
+        memeCollectionView.deleteItemsAtIndexPaths(selectedRows)
         // Clear temporary array just in case
         objectsToDelete.removeAll(keepCapacity: false)
         
@@ -167,7 +167,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
         
         // Delete everything, delete the objects from data model.
         appDelegate.memes.removeAll(keepCapacity: false)
-        collectionView?.reloadSections(NSIndexSet(index: 0))
+        memeCollectionView.reloadSections(NSIndexSet(index: 0))
       }
       self.selecting = !selecting
       updateButtonsToMatchTableState()
@@ -198,7 +198,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
   func updateDeleteButtonTitle(){
     
     // Update the delete button's title, based on how many items are selected
-    if let selectedRows = collectionView?.indexPathsForSelectedItems() as? [NSIndexPath]{
+    if let selectedRows = memeCollectionView.indexPathsForSelectedItems() as? [NSIndexPath]{
       
       let allItemsAreSelected = selectedRows.count == appDelegate.memes.count ? true : false
       let noItemsAreSelected = selectedRows.isEmpty

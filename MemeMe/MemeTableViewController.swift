@@ -16,7 +16,7 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
   @IBOutlet var editButton: UIBarButtonItem!
   @IBOutlet var deleteButton: UIBarButtonItem!
   @IBOutlet var cancelButton: UIBarButtonItem!
-
+  
   
   // MARK: Declarations
   
@@ -33,24 +33,13 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
     self.tableView.allowsMultipleSelectionDuringEditing = true
     tableView.reloadData()
     
-    // Switch to image Editor is there is no saved Memes
-    if appDelegate.memes.count == 0{
-      let storyboard = UIStoryboard (name: "Main", bundle: nil)
-      let imagePickerController = storyboard.instantiateViewControllerWithIdentifier("imagePickerController") as! MemeEditorViewController
-      self.hidesBottomBarWhenPushed = false
-      imagePickerController.hidesBottomBarWhenPushed = true
-      if let navigationcontroller = self.navigationController {
-        navigationcontroller.pushViewController(imagePickerController, animated: true)
-      }
-    }
-    
     // make our view consistent
     updateButtonsToMatchTableState()
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-  
+    
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 80
     
@@ -60,7 +49,7 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
     
     self.updateButtonsToMatchTableState()
   }
-
+  
   
   // MARK: Actions for Add, Edit, Delete and Cancel buttons
   
@@ -70,7 +59,7 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
     self.hidesBottomBarWhenPushed = false
     imagePickerController.hidesBottomBarWhenPushed = true
     if let navigationcontroller = self.navigationController {
-     navigationcontroller.pushViewController(imagePickerController, animated: true)
+      navigationcontroller.pushViewController(imagePickerController, animated: true)
     }
   }
   
@@ -147,7 +136,7 @@ class MemeTableViewController: UITableViewController, UITableViewDataSource, UIT
       self.hidesBottomBarWhenPushed = false
       detailController.hidesBottomBarWhenPushed = true
       if let navigationcontroller = self.navigationController {
-       navigationcontroller.pushViewController(detailController, animated: true)
+        navigationcontroller.pushViewController(detailController, animated: true)
       }
     }
   }

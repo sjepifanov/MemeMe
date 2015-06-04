@@ -9,7 +9,7 @@
 import UIKit
 
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
-
+  
   // MARK: Outlets
   
   @IBOutlet weak var topTextField: UITextField!
@@ -43,7 +43,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   //MARK: View
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
     
     // Set textField text attributes.
@@ -223,7 +223,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   // MARK: Image Picker Controller Delegates methods.
   
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-
+    
     if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
       
       // Dismiss UIImagePickerController when selection is made.
@@ -282,7 +282,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     let scaleWidth = scrollSize.width / imageSize.width
     let scaleHeight = scrollSize.height / imageSize.height
     let maxScale = max(scaleWidth, scaleHeight)
-
+    
     scrollView.zoomScale = maxScale
   }
   
@@ -298,7 +298,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     var screenHeight = UIScreen.mainScreen().bounds.size.height
     var viewWidth = imageView.frame.size.width
     var viewHeight = imageView.frame.size.height
-
+    
     var x: CGFloat = 0
     var y: CGFloat = 0
     
@@ -328,12 +328,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     let insetY = excessiveHeight / 2.0
     
     scrollView.contentInset = UIEdgeInsetsMake(
-    max(insetY, 0.0),
-    max(insetX, 0.0),
-    max(insetY, 0.0),
-    max(insetX, 0.0)
+      max(insetY, 0.0),
+      max(insetX, 0.0),
+      max(insetY, 0.0),
+      max(insetX, 0.0)
     )
-
+    
   }
   
   // MARK: Creating and saving Meme methods
@@ -342,7 +342,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   Create memed image by capturing current view frame.
   */
   func generateMemedImage() -> UIImage {
-
+    
     // Hide navigation bar and toolbar
     hideBars()
     
@@ -386,9 +386,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   
   // MARK: Hide bars for Gesture Recognizer
   
-
+  
   func hideBarsOnTouch(recognizer: UITapGestureRecognizer) {
-      hideBars()
+    hideBars()
   }
   
   /**
@@ -398,8 +398,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
   */
   func hideBars() {
     if let navigationController = self.navigationController {
-      navigationController.setNavigationBarHidden(navigationController.navigationBarHidden == false, animated: false) //or animated: false
-    toolBar.hidden = toolBar.hidden ? false : true
+      navigationController.setNavigationBarHidden(navigationController.navigationBarHidden == false, animated: false)
+      toolBar.hidden = toolBar.hidden ? false : true
     }
   }
   

@@ -11,12 +11,12 @@ import UIKit
 
 func == (lhs: Meme, rhs: Meme) -> Bool {
   if lhs.topText == rhs.topText &&
-     lhs.bottomText == rhs.bottomText &&
-     lhs.originalImage == rhs.originalImage &&
-     lhs.memedImage == rhs.memedImage {
-     return true
+    lhs.bottomText == rhs.bottomText &&
+    lhs.originalImage == rhs.originalImage &&
+    lhs.memedImage == rhs.memedImage {
+      return true
   } else {
-     return false
+    return false
   }
 }
 
